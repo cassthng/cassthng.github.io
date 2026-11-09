@@ -123,7 +123,8 @@
   .marquee{overflow:hidden; padding-block:8px clamp(48px, 7vw, 96px); white-space:nowrap;}
   .marquee-track{display:inline-flex; gap:.4em; font-size:clamp(3rem, 10vw, 9rem); font-weight:800; letter-spacing:-.045em; line-height:1; will-change:transform;}
   .marquee-track .o{color:transparent; -webkit-text-stroke:1.5px var(--ink);}
-  .marquee-track .r{color:var(--red);}
+  .marquee-track .r{color:var(--red); display:inline-flex; align-items:center;}
+  .marquee-track .star{width:.62em; height:.62em; fill:none; stroke:currentColor; stroke-width:3.2; stroke-linecap:round;}
 
   /* ---------- selected work ---------- */
   .work-head{background:var(--red); color:var(--ink); padding-block:clamp(36px, 6vw, 72px) 0;}
@@ -579,7 +580,7 @@
   </section>
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track" id="marquee">
-      <span>engineering</span><span class="r">✳</span><span class="o">prototyping</span><span class="r">✳</span><span>teaching</span><span class="r">✳</span><span class="o">photography</span><span class="r">✳</span><span>design</span><span class="r">✳</span><span class="o">engineering</span><span class="r">✳</span><span>prototyping</span>
+      <span>engineering</span><span class="r"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg></span><span class="o">prototyping</span><span class="r"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg></span><span>teaching</span><span class="r"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg></span><span class="o">photography</span><span class="r"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg></span><span>design</span><span class="r"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg></span><span class="o">engineering</span><span class="r"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg></span><span>prototyping</span>
     </div>
   </div>
 
@@ -588,7 +589,7 @@
     <div class="work-head">
       <div class="wrap">
         <p class="work-intro">Highlights from my projects, campaigns and photography.</p>
-        <h2 class="giant work-title" id="featured-title">selected work<sup id="featured-count">4</sup></h2>
+        <h2 class="giant work-title" id="featured-title">selected work<sup id="featured-count">11</sup></h2>
       </div>
     </div>
     <div class="work-list">
@@ -1127,7 +1128,7 @@
   var FEATURED = ['myCatholicSG App', 'Physical World 1D Challenge', 'SpeakEasy', 'Cannon & Projectile Challenge', 'Domus Orationis', 'Mission Trip Campaign', 'Social Media', "Dillon & Gzenn's Wedding"];
   var featuredList = document.getElementById('featured');
   WORKS.filter(function(w){ return FEATURED.indexOf(w.name) > -1; }).forEach(function(w){ featuredList.appendChild(makeRow(w)); });
-  document.getElementById('featured-count').textContent = FEATURED.length;
+  document.getElementById('featured-count').textContent = WORKS.length;
   document.getElementById('see-all').textContent = 'See all ' + WORKS.length + ' works';
   function matches(w, disc, type){ return (disc === 'All disciplines' || w.disc === disc) && (type === 'All types' || w.type === type); }
   function count(disc, type){ return WORKS.filter(function(w){ return matches(w, disc, type); }).length; }
