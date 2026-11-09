@@ -126,6 +126,7 @@ figcaption{font-size:.75rem;color:var(--muted);line-height:1.4}
   .row{gap:10px}
   .row.p{--n:2 !important}
   .row.p.n3 figure:nth-child(3){display:none}
+  .row.shots{--n:1 !important}
 }
 /* photo viewer: click any photo to see it full size */
 .wu figure img{cursor:zoom-in;transition:transform .25s,box-shadow .25s}
