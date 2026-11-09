@@ -176,6 +176,12 @@
   .sdw-grid figcaption, .sdw-ex figcaption{font-size:.75rem; opacity:.75;}
   .sdw-label{font-size:.8125rem; font-weight:600; margin:10px 0 12px;}
   .sdw-label a{text-underline-offset:3px;}
+  .screens-note{font-weight:400; opacity:.65;}
+  .screens{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:18px; align-items:start;}
+  .screens figure{margin:0; display:flex; flex-direction:column; gap:8px;}
+  .screens img{width:100%; height:auto; border-radius:10px; background:#fff; box-shadow:0 10px 30px rgba(0,0,0,.35);}
+  .screens figcaption{font-size:.75rem; opacity:.75;}
+  @media (max-width:640px){ .screens{grid-template-columns:1fr;} }
   .sdw-ex{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:14px;}
   @media (max-width:760px){ .sdw-grid{grid-template-columns:1fr 1fr; gap:12px;} .sdw-ex{grid-template-columns:1fr 1fr;} }
   .poster-grid{display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:14px;}
@@ -408,7 +414,7 @@
   .sheet-hero{margin:0; height:clamp(200px, 32vw, 400px); background:#24262c;}
   .sheet-hero img{width:100%; height:100%; object-fit:cover;}
   .sheet .work-detail{max-width:none; margin:0; grid-template-columns:minmax(0, .85fr) minmax(0, 1.25fr); gap:28px clamp(28px, 5vw, 64px); padding:clamp(24px, 4vw, 48px);}
-  .sheet-side{display:flex; flex-direction:column; gap:12px; min-width:0; align-self:start; position:sticky; top:24px;}
+  .sheet-side{display:flex; flex-direction:column; gap:12px; min-width:0; align-self:start;}
   .sheet-k{font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#c3cab4;}
   .sheet h2{font-size:clamp(2.2rem, 4.6vw, 3.8rem); font-weight:800; letter-spacing:-.045em; line-height:.95; text-wrap:balance;}
   .sheet-tag{font-size:clamp(1.1rem, 1.7vw, 1.35rem); font-weight:500; letter-spacing:-.02em; color:rgba(255,255,255,.7); margin-top:-4px;}
@@ -753,7 +759,7 @@
               <li><b>GovTech:</b> helped prepare SingPass and Myinfo approval submissions for 20 data fields.</li>
               <li><b>FIAT: Catholic Hackathon 2026:</b> organised a weekend hackathon of 80 participants, 16 teams and 12 mentors.</li>
             </ul>
-            <div class="rel"><button type="button" data-work="myCatholicSG App" aria-haspopup="dialog">myCatholicSG App</button><a href="journey/projects.html#dco">Read the write-up →</a></div></article>
+            <div class="rel"><button type="button" data-work="myCatholicSG App" aria-haspopup="dialog">myCatholicSG App</button><button type="button" data-work="Social Media" aria-haspopup="dialog">FIAT hackathon</button><a href="journey/projects.html#dco">Read the write-up →</a></div></article>
           <article class="entry"><div class="entry-top"><span class="mono cream" aria-hidden="true">WG</span><p class="ctx">Jun 2026 – present · Remote <span class="now">NOW</span></p></div><h3>Essay Marker</h3><p class="org">Writers' Guild Learning Centre</p>
             <ul class="facts"><li>Grade about <b>110 essays a month</b> against set criteria, with actionable feedback.</li></ul>
             <div class="pills"><span class="pill">Essay marking</span><span class="pill">Student feedback</span></div></article>
@@ -997,16 +1003,14 @@
        '<div class="gallery"><figure class="poster"><img src="journey/media/gen-shell.jpg" alt="Phyllotaxis shell made of rotated triangular frames" loading="lazy"><figcaption>Phyllotaxis shell</figcaption></figure>' +
        '<figure class="poster"><img src="journey/media/voronoi-wave.gif" alt="Animation of the Voronoi wave rippling as the phase slider moves" loading="lazy"><figcaption>Scrubbing the phase slider</figcaption></figure>' +
        '<figure class="poster"><img src="journey/media/dc-print-1615.jpg" alt="The 3D-printed red Voronoi wave" loading="lazy"><figcaption>The printed wave</figcaption></figure></div>'},
-    {name:'myCatholicSG App', more:'dco', disc:'Engineering', type:'Projects', tags:['Release QA','React & Firebase','SingPass','FIAT Hackathon'], img:'work-fiat-bg.jpg', pos:'center 30%', when:'Sep 2026 – present', ctx:'Technical Intern, Digital Church Office (DCO)',
+    {name:'myCatholicSG App', more:'dco', disc:'Engineering', type:'Projects', tags:['Release QA','React & Firebase','SingPass'], img:'work-mcsg-catch-overview.jpg', pos:'center 62%', when:'Sep 2026 – present', ctx:'Technical Intern, Digital Church Office (DCO)',
      body:'<p>As a technical intern at the Digital Church Office, I work on the myCatholicSG app, which Catholics across Singapore use to stay connected with their parishes and the wider Church. It is built with React and Vite on Firebase.</p>' +
        '<ul><li><strong>Release QA:</strong> I check out developers’ pull requests, run them locally and test them the way parishioners and parish admins use the app. I have tested 10+ features, from room bookings and SEEDs sacrament bookings to CATCH catechism timeslots.</li>' +
        '<li><strong>Test data and APIs:</strong> I seed a private Firebase project with edge cases, such as clashing bookings, using Node.js scripts, then confirm each fix through the API in Postman.</li>' +
        '<li><strong>Regression checks:</strong> I verified fixes for password-reset loops, login race conditions and security-audit upgrades, plus a new CATCH audit trail for timeslot and level changes and its CSV export.</li>' +
-       '<li><strong>SingPass with GovTech:</strong> I tested an 84-file SingPass change end to end (consent scopes, the verified badge, NRIC masking, and child and sponsored-child records) and helped prepare the SingPass and Myinfo approval submissions covering 20 data fields, so verified records can pre-fill sacrament and catechism forms.</li>' +
-       '<li><strong>FIAT Catholic Hackathon 2026:</strong> organised FIAT, a three-day hackathon run by the Digital Church Office and supported by the GIFT Catholic Foundation, from 9 to 11 October 2026. 80 participants in 16 teams, with 12 mentors, took on real problems from four Church organisations, framed by worship, adoration and prayer, before pitching to the people who wrote the briefs.</li></ul>' +
-       '<p class="stackline">React · Vite · Firebase · Node.js · Postman · Vitest · Playwright · GitHub Actions</p>' +
-       '<p>Alongside this, I support DCO’s social media work.</p>' +
-       '<figure class="reel"><video src="work-fiat-reel.mp4" poster="work-fiat-poster.jpg" controls playsinline preload="none" width="720" height="1280"></video><figcaption>FIAT recap reel · <a href="https://www.instagram.com/reel/De1UQA1TQu3/" target="_blank" rel="noopener">Watch on Instagram ↗</a></figcaption></figure>'},
+       '<li><strong>SingPass with GovTech:</strong> I tested an 84-file SingPass change end to end (consent scopes, the verified badge, NRIC masking, and child and sponsored-child records) and helped prepare the SingPass and Myinfo approval submissions covering 20 data fields, so verified records can pre-fill sacrament and catechism forms.</li></ul>' +
+       '<p class="stackline">React · Vite · Firebase · Node.js · Postman · Vitest · Playwright · GitHub Actions</p>',
+     extra:'<p class="sdw-label">Screens I test before each release <span class="screens-note">· shown with sample data</span></p><div class="screens"><figure><img src="work-mcsg-catch-overview.jpg" alt="CATCH admin overview: enrolment totals and charts by status, boundary and timeslot" width="1383" height="868" loading="lazy"><figcaption>CATCH admin · overview</figcaption></figure><figure><img src="work-mcsg-catch-registrations.jpg" alt="CATCH registrations table with status, parish, level and timeslot for each child" width="1383" height="868" loading="lazy"><figcaption>CATCH admin · registrations</figcaption></figure><figure><img src="work-mcsg-venue-type.jpg" alt="Room booking, step 1: choose a coworking space, event room or retreat house" width="1383" height="540" loading="lazy"><figcaption>Room booking · choose a venue</figcaption></figure><figure><img src="work-mcsg-venue-datetime.jpg" alt="Room booking, step 2: location, start and end time, and repeat booking" width="1383" height="610" loading="lazy"><figcaption>Room booking · date, time and recurrence</figcaption></figure></div>'},
     {name:'Domus Orationis', more:'domus', disc:'Design & media', type:'Projects', tags:['Spatial design','3D printing','Rendering'], img:'work-sdw-exterior.jpg', pos:'center 45%', when:'2026', ctx:'SUTD Spatial Design World, Class 3 Group 6',
      body:'<p><strong>House of Prayer.</strong> A contemplative retreat house set among the farming terraces of Mù Cang Chải in Vietnam’s highlands. Sunlit timber lattices open the upper floors to views of the hills, while a hidden adoration room is carved into the slope below for prayer and stillness.</p>' +
        '<ul><li>Generated the form from three lines: swept into volumes, joined, sliced into roof planes, hollowed out, then extended with a second volume, a site platform and a basement stair.</li>' +
@@ -1021,10 +1025,12 @@
        '<p><a href="https://fraternitas.smugmug.com/Fraternitas-Mission-OFM-Indo/Fraternitas-Mission-2025-TRIP/n-vQ68fN" target="_blank" rel="noopener">See photos from the 2025 mission trip ↗</a></p>' +
        '<div class="gallery wide"><figure class="poster"><img src="work-mission-booth-2.jpg" alt="The team with a friar at the Fraternitas booth" width="1200" height="900" loading="lazy"><figcaption>At the Fraternitas booth</figcaption></figure>' +
        '<figure class="poster"><img src="work-mission-booth-3.jpg" alt="Volunteers and guests in front of the mission trip display board" width="1200" height="900" loading="lazy"><figcaption>With guests at the booth</figcaption></figure></div>'},
-    {name:'Social Media', more:'social', disc:'Design & media', type:'Campaigns', tags:['Instagram','Telegram','Graphic design'], when:'2025 – present', ctx:'Fraternitas and Digital Church Office (DCO)',
+    {name:'Social Media', more:'social', disc:'Design & media', type:'Campaigns', tags:['Instagram','Telegram','Graphic design','FIAT Hackathon'], when:'2025 – present', ctx:'Fraternitas and Digital Church Office (DCO)',
      body:'<p>Social media and design work for Catholic communities, from day-to-day content to event posters and hiring adverts.</p>' +
        '<ul><li><strong>Fraternitas:</strong> grew the fraternity’s online presence by curating and managing content on Instagram and Telegram, and designed posters that boosted outreach and sign-ups.</li>' +
-       '<li><strong>Digital Church Office (DCO):</strong> supporting social media work as a technical intern since September 2026.</li></ul>' +
+       '<li><strong>Digital Church Office (DCO):</strong> supporting social media work as a technical intern since September 2026.</li>' +
+       '<li><strong>FIAT Catholic Hackathon 2026:</strong> organised FIAT, a three-day hackathon run by the Digital Church Office and supported by the GIFT Catholic Foundation, from 9 to 11 October 2026. 80 participants in 16 teams, with 12 mentors, took on real problems from four Church organisations, framed by worship, adoration and prayer, before pitching to the people who wrote the briefs.</li></ul>' +
+       '<figure class="reel"><video src="work-fiat-reel.mp4" poster="work-fiat-poster.jpg" controls playsinline preload="none" width="720" height="1280"></video><figcaption>FIAT recap reel · <a href="https://www.instagram.com/reel/De1UQA1TQu3/" target="_blank" rel="noopener">Watch on Instagram ↗</a></figcaption></figure>' +
        '<p><strong>Selected posters</strong></p>' +
        '<ul><li><strong>Chill Out with the Friars:</strong> a poster series for vocation evenings for men aged 18 to 35. Each event pairs a cover poster with a profile slide telling a friar’s story, from Friar Robin Toha, OFM in July to Friar Derrick Yap, OFM in September.</li>' +
        '<li><strong>We’re Hiring Interns:</strong> a collage-style recruitment poster calling for young adults with skills in Canva, WordPress and social media.</li></ul>',
@@ -1042,10 +1048,10 @@
     'Cannon & Projectile Challenge': {date:'Nov 2025', badge:'★ 1st in cohort', tag:'Predict, test, compare, refine', facts:[['Course','01.018 Design Thinking Project I'],['Goal','Predict where the projectile will land'],['Team','Group SC01-4'],['Tools','Projectile physics, 3D printing, calibration testing'],['Result','1st in cohort']]},
     'Life Cycle Analysis': {date:'Mar 2026', badge:'−85% CO₂', tag:'A lower-carbon badminton racket', cover:'work-lca-racket-3d.jpg', facts:[['Course','10.016 Science for a Sustainable World'],['Goal','Cut a badminton racket’s carbon footprint without changing how it plays'],['My role','Goal and scope, inventory analysis and impact assessment'],['Team','Amoz, Chan Yong Le, Ethan, Jia En and me'],['Tools','Granta EduPack'],['Result','1.67 → 0.24 kg CO₂ per racket, about 85% less']]},
     'Design Computation': {date:'2026', badge:'Grade A−', tag:'Generative and parametric forms', facts:[['Course','10.026 Design Computation'],['Made','A phyllotaxis shell and a 3D-printed Voronoi wave'],['Tools','Rhino, Grasshopper, 3D printing'],['Result','Grade A−']]},
-    'myCatholicSG App': {date:'Sep 2026 – now', badge:'Now', tag:'Building for the Church', facts:[['Product','myCatholicSG, the parish app of the Catholic Church in Singapore'],['My role','Technical intern: release QA and SingPass testing; organised FIAT'],['Stack','React · Vite · Firebase · Node.js · Postman'],['In numbers','10+ features tested · 84-file SingPass change · 20 Myinfo fields · 80 hackathon participants']]},
+    'myCatholicSG App': {date:'Sep 2026 – now', badge:'Now', tag:'Building for the Church', facts:[['Product','myCatholicSG, the parish app of the Catholic Church in Singapore'],['My role','Technical intern: release QA and SingPass testing'],['Stack','React · Vite · Firebase · Node.js · Postman'],['In numbers','10+ features tested · 84-file SingPass change · 20 Myinfo fields']]},
     'Domus Orationis': {date:'2026', badge:'3D-printed model', tag:'A house of prayer on the rice terraces', facts:[['Course','10.024 Spatial Design World'],['Site','The rice terraces of Mù Cang Chải, Vietnam'],['Team','Poh Jun Leng, Png Wei Teng, Tristan Fong and me'],['Made','Plans, renders and a landscaped 3D-printed model']]},
     'Mission Trip Campaign': {date:'Jun – Dec 2025', badge:'Fraternitas × CHARIS', tag:'Outreach with Fraternitas and CHARIS', facts:[['Partners','Fraternitas and CHARIS'],['Trip','Franciscan mission trip to Indonesia'],['Made','Display board, stand and outreach conversations']]},
-    'Social Media': {date:'2025 – now', badge:'+60% sign-ups', tag:'Posters that feel like an invitation', cover:'work-poster-derrick.jpg', cpos:'center 22%', facts:[['My role','Fraternitas intern, social media and design'],['Channels','Instagram and Telegram'],['Tools','Canva, Photoshop, Illustrator'],['Result','Event sign-ups up 60%']]},
+    'Social Media': {date:'2025 – now', badge:'+60% sign-ups', tag:'Posters that feel like an invitation', cover:'work-poster-derrick.jpg', cpos:'center 22%', facts:[['My role','Fraternitas intern, social media and design; FIAT organiser at DCO'],['Channels','Instagram and Telegram'],['Tools','Canva, Photoshop, Illustrator'],['Result','Event sign-ups up 60% · FIAT: 80 participants, 16 teams']]},
     'Catholic Pitch': {date:'Commission', badge:'Event coverage', tag:'An evening of pitches and dinner', facts:[['My role','Event photographer'],['Covered','The welcome, presentations, dinner and guests']]},
     "Dillon & Gzenn's Wedding": {date:'Commission', badge:'Black & white', tag:'The day, in black and white', facts:[['My role','Wedding photographer'],['Covered','The vows, the aisle, the kiss and the group photo']]}
   };
