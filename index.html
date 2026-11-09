@@ -1,0 +1,952 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cassidy Thng</title>
+<meta property="og:title" content="Cassidy Thng">
+<meta property="og:description" content="Engineering Systems &amp; Design undergraduate at SUTD, technical intern, tutor and event photographer in Singapore.">
+<meta property="og:image" content="https://cassthng.github.io/work-speakeasy.jpg">
+<meta property="og:url" content="https://cassthng.github.io/">
+
+<meta name="description" content="Cassidy Thng — Engineering Systems & Design undergraduate at SUTD, tutor, essay marker and event photographer in Singapore.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800&family=Mrs+Saint+Delafield&display=swap">
+<style>
+  /* Layout: one long scrolling page built to be explored downwards. Paper hero with
+     cycling roles and a shuffling fan of photos; a statement whose words darken as you
+     scroll; a scroll-driven marquee; signal-red "selected work" over a cream list that
+     reveals on hover; counters; A–D panels that stack as you scroll; ink "let's talk";
+     red "about me"; experience and education grids; ink contact with a fill-in-the-blanks
+     message. One deliberate visual world: a single light theme, every colour explicit. */
+  :root{
+    --red:#5d6650;
+    --ink:#111319;
+    --paper:#f3f2f0;
+    --cream:#f7f2e7;
+    --white:#ffffff;
+    --muted:#6d6f75;
+    --faint:#cdcac3;
+    --sans:'Inter Tight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --script:'Mrs Saint Delafield', 'Snell Roundhand', 'Brush Script MT', cursive;
+    --giant:clamp(2.9rem, 11.8vw, 10.6rem);
+    --row:clamp(2rem, 6.2vw, 5.4rem);
+    --gutter-l:max(20px, env(safe-area-inset-left, 0px));
+    --gutter-r:max(20px, env(safe-area-inset-right, 0px));
+    --header-h:58px;
+    color-scheme:light;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{overflow-x:clip; scroll-behavior:smooth; scroll-padding-top:calc(var(--header-h) + env(safe-area-inset-top, 0px)); -webkit-text-size-adjust:100%;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:clip;}
+  img{max-width:100%; display:block;}
+  [hidden]{display:none !important;}
+  a{color:inherit;}
+  h1,h2,h3,p{margin:0;}
+  button, input, select, textarea{font:inherit; color:inherit;}
+  button{background:none; border:0; padding:0; cursor:pointer;}
+  :focus-visible{outline:2px solid currentColor; outline-offset:3px;}
+  .wrap{max-width:1440px; margin-inline:auto; padding-left:var(--gutter-l); padding-right:var(--gutter-r);}
+  .eyebrow{font-weight:700; font-size:.8125rem; letter-spacing:.03em; text-transform:uppercase; text-align:center; display:flex; flex-direction:column; align-items:center; gap:2px;}
+  .eyebrow::after{content:""; width:8px; height:8px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor; transform:rotate(45deg);}
+  .pill{display:inline-flex; align-items:center; border:1px solid currentColor; border-radius:999px; padding:1px 9px; font-size:.75rem; line-height:1.5; white-space:nowrap;}
+  .btn-pill{display:inline-flex; align-items:center; gap:8px; border:1.5px solid currentColor; border-radius:999px; padding:6px 18px; font-weight:500; text-decoration:none; transition:background .25s, color .25s;}
+  .giant{font-size:var(--giant); font-weight:800; letter-spacing:-.045em; line-height:.86;}
+
+  /* ---------- header + scroll progress ---------- */
+  body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top, 0px); z-index:41; background:var(--paper);}
+  .site-header{position:sticky; top:env(safe-area-inset-top, 0px); z-index:40; background:color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid rgba(17,19,25,.08);}
+  .header-row{display:flex; justify-content:space-between; align-items:center; gap:8px 20px; min-height:var(--header-h); flex-wrap:wrap; padding-block:8px;}
+  .site-header .name{font-weight:800; font-size:1.0625rem; letter-spacing:-.03em; text-decoration:none;}
+  .clock{font-size:.75rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; font-variant-numeric:tabular-nums;}
+  .clock::before{content:""; display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--red); margin-right:7px; vertical-align:1px;}
+  .site-header nav{display:flex; flex-wrap:wrap; gap:4px;}
+  .site-header nav a{text-decoration:none; font-weight:500; padding:4px 12px; border-radius:999px; border:1.5px solid transparent; transition:border-color .2s, background .2s, color .2s;}
+  .site-header nav a:hover{border-color:var(--ink);}
+  .site-header nav a.is-active{background:var(--ink); color:var(--white); border-color:var(--ink);}
+  .progress{position:absolute; left:0; bottom:-1px; height:2px; width:100%; background:var(--red); transform-origin:0 50%; transform:scaleX(0);}
+
+  /* ---------- pages ---------- */
+  .page{display:none;}
+  .page.is-active{display:block; animation:page-in .5s cubic-bezier(.22,.61,.36,1);}
+  @keyframes page-in{from{opacity:.001; transform:translateY(14px);} to{opacity:1; transform:none;}}
+  .see-all{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:clamp(28px, 4vw, 44px);}
+  .see-all .btn-pill{background:var(--ink); border-color:var(--ink); color:var(--white); padding:10px 24px;}
+  .see-all .btn-pill:hover{background:var(--red); border-color:var(--red);}
+  .featured .work-list{padding-bottom:clamp(56px, 7vw, 88px);}
+  .to-top{color:inherit; font-size:inherit;}
+  .to-top:hover{color:var(--white);}
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--paper); display:flex; flex-direction:column; min-height:calc(min(90vh, 880px) - var(--header-h));}
+  .hero-main{flex:1; display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 400px); gap:32px clamp(32px, 5vw, 80px); align-items:center; padding-block:clamp(32px, 5vw, 56px);}
+  .hero-copy{display:flex; flex-direction:column; gap:clamp(16px, 2.6vw, 30px); min-width:0;}
+  .hi{font-size:clamp(1.6rem, 3vw, 2.5rem); font-weight:500; letter-spacing:-.03em; line-height:1.05;}
+  .roles{font-size:clamp(2.7rem, 7.6vw, 7.6rem); font-weight:800; letter-spacing:-.045em; line-height:.86;}
+  .roles .line{display:block; overflow:hidden; padding-bottom:.06em; margin-bottom:-.06em;}
+  .roles .ch{display:inline-block; transform:translateY(0); transition:transform .5s cubic-bezier(.22,.61,.36,1);}
+  .roles .ch.below{transform:translateY(105%);}
+  .roles .ch.above{transform:translateY(-105%);}
+  .hero-copy .intro{max-width:46ch; color:#3c3e44;}
+  .since{display:flex; flex-wrap:wrap; gap:6px 16px; font-size:.8125rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em;}
+  .since span:nth-child(2){color:var(--red);}
+  .fan{position:relative; width:min(100%, 340px); aspect-ratio:4/5; justify-self:center; margin-right:24px; cursor:pointer;}
+  .fan .card{position:absolute; inset:0; margin:0; border-radius:6px; overflow:hidden; box-shadow:0 18px 40px rgba(17,19,25,.18); transition:transform .7s cubic-bezier(.22,.61,.36,1), opacity .5s; background:var(--cream);}
+  .fan .card img{width:100%; height:100%; object-fit:cover;}
+  .fan .card[data-pos="0"]{transform:rotate(-4deg); z-index:4;}
+  .fan .card[data-pos="1"]{transform:translate(16px,-12px) rotate(3deg); z-index:3;}
+  .fan .card[data-pos="2"]{transform:translate(30px,-22px) rotate(9deg); z-index:2;}
+  .fan .card[data-pos="3"]{transform:translate(42px,-30px) rotate(15deg); z-index:1;}
+  .fan .card.leaving{transform:translate(-70%, 30px) rotate(-22deg); z-index:5;}
+  .fan figcaption{position:absolute; left:10px; bottom:10px; background:var(--white); color:var(--ink); font-size:.75rem; font-weight:500; border-radius:999px; padding:2px 10px;}
+  .fan-hint{position:absolute; right:-6px; bottom:-30px; font-size:.75rem; color:var(--muted);}
+  .explore{display:block; background:var(--red); color:var(--white); text-align:center; text-decoration:none; font-weight:700; font-size:.8125rem; letter-spacing:.06em; text-transform:uppercase; padding-block:16px; transition:background .25s;}
+  .explore:hover{background:var(--ink);}
+
+  /* ---------- statement (words darken as you scroll) ---------- */
+  .statement{padding-block:clamp(72px, 11vw, 150px);}
+  .statement p{font-size:clamp(1.9rem, 4.6vw, 4.2rem); font-weight:700; letter-spacing:-.04em; line-height:1.05; max-width:20ch;}
+  .statement .w{color:var(--faint); transition:color .25s;}
+  .statement .w.on{color:var(--ink);}
+  .statement .w.mark.on{color:var(--red);}
+
+  /* ---------- scroll-driven marquee ---------- */
+  .marquee{overflow:hidden; padding-block:8px clamp(48px, 7vw, 96px); white-space:nowrap;}
+  .marquee-track{display:inline-flex; gap:.4em; font-size:clamp(3rem, 10vw, 9rem); font-weight:800; letter-spacing:-.045em; line-height:1; will-change:transform;}
+  .marquee-track .o{color:transparent; -webkit-text-stroke:1.5px var(--ink);}
+  .marquee-track .r{color:var(--red);}
+
+  /* ---------- selected work ---------- */
+  .work-head{background:var(--red); color:var(--ink); padding-block:clamp(36px, 6vw, 72px) 0;}
+  .work-intro{color:var(--white); max-width:52ch; margin:0 auto clamp(24px, 4vw, 40px); text-align:center; font-weight:500;}
+  .filters{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:24px; margin-bottom:clamp(28px, 5vw, 56px);}
+  .filters .col{display:flex; flex-direction:column; gap:2px; min-width:0;}
+  .filters .col:last-child{align-items:flex-end; text-align:right;}
+  .filters .col-label{font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px; color:rgba(17,19,25,.6);}
+  .fbtn{font-size:clamp(1rem, 1.6vw, 1.375rem); font-weight:500; letter-spacing:-.02em; line-height:1.35; text-align:inherit; opacity:.55; transition:opacity .2s, color .2s;}
+  .fbtn sup{font-size:.6em; margin-left:2px;}
+  .fbtn:hover{opacity:1;}
+  .fbtn[aria-pressed="true"]{opacity:1; color:var(--white);}
+  .work-title{color:var(--white); text-align:center; white-space:nowrap; margin-bottom:-.12em; position:relative; z-index:1;}
+  .work-title sup{font-size:.16em; letter-spacing:0; vertical-align:top; position:relative; top:.35em; margin-left:.08em; background:var(--white); color:var(--red); border-radius:999px; padding:.18em .45em; font-weight:700;}
+  .work-list{background:var(--cream); padding-block:clamp(20px, 3vw, 36px) clamp(80px, 9vw, 110px);}
+  .work-list ul{list-style:none; margin:0; padding:0; background:var(--white);}
+  .work{border-bottom:1px solid #e3ded3; position:relative; overflow:hidden;}
+  .work-btn{width:100%; display:flex; justify-content:center; align-items:flex-start; gap:10px; flex-wrap:wrap; padding:clamp(18px, 2.4vw, 30px) 16px; position:relative; z-index:1; transition:color .3s;}
+  .work-name{font-size:var(--row); font-weight:400; letter-spacing:-.045em; line-height:1; text-wrap:balance; text-align:center;}
+  .work-tags{display:flex; flex-direction:column; align-items:flex-start; gap:3px; padding-top:.35em;}
+  .work-fill{position:absolute; inset:0; background:var(--ink); opacity:0; transition:opacity .35s; z-index:0;}
+  .work-fill.has-img{background-size:cover; background-position:center 40%;}
+  .work-fill.has-img::after{content:""; position:absolute; inset:0; background:rgba(17,19,25,.45); transition:background .35s;}
+  .work.is-open .work-fill.has-img::after{background:rgba(17,19,25,.7);}
+  .work:hover .work-fill, .work.is-open .work-fill{opacity:1;}
+  .work:hover, .work.is-open{color:var(--white);}
+  .work-detail{position:relative; z-index:1; display:grid; grid-template-columns:minmax(0, 220px) minmax(0, 1fr); gap:10px 40px; max-width:960px; margin-inline:auto; padding:0 20px clamp(26px, 3vw, 40px);}
+  .work-detail .meta{display:flex; flex-direction:column; gap:2px; font-weight:500;}
+  .work-detail .meta span:last-child{opacity:.75; font-weight:400;}
+  .work-detail .body{display:flex; flex-direction:column; gap:10px; max-width:62ch;}
+  .work-detail a{font-weight:500; text-underline-offset:3px;}
+  .work-detail ul{list-style:disc; background:none; padding-left:1.1em; margin:0; display:flex; flex-direction:column; gap:4px;}
+  .work-detail .poster{margin:6px 0 0; max-width:300px;}
+  .work-detail .more-link a{font-weight:700;}
+  .work-detail .stackline{font-size:.8125rem; opacity:.8; letter-spacing:.01em;}
+  .work-detail .reel{margin:6px 0 0; max-width:320px;}
+  .work-detail .reel video{display:block; width:100%; height:auto; aspect-ratio:9/16; border-radius:8px; background:#000; box-shadow:0 10px 30px rgba(0,0,0,.35);}
+  .work-detail .reel figcaption{font-size:.75rem; opacity:.75; margin-top:6px;}
+  .work-detail .gallery{display:flex; flex-wrap:wrap; gap:16px;}
+  .work-detail .gallery .poster{flex:1 1 200px; max-width:280px;}
+  .work-detail .gallery.wide .poster{flex:1 1 260px; max-width:420px;}
+  .work-detail .gallery.charts .poster{flex:1 1 100%; max-width:100%;}
+  .work-detail .extra{grid-column:1 / -1; margin-top:8px;}
+  .sdw-wide{margin:0 0 16px; background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.35);}
+  .sdw-wide img{display:block; width:100%; height:auto;}
+  .sdw-wide figcaption{font-size:.75rem; color:var(--muted); padding:8px 14px 10px;}
+  .sdw-grid{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:14px; align-items:start;}
+  .sdw-grid figure, .sdw-ex figure{margin:0 0 14px; break-inside:avoid; display:flex; flex-direction:column; gap:7px;}
+  .sdw-grid img, .sdw-ex img{display:block; width:100%; height:auto; border-radius:6px; box-shadow:0 10px 30px rgba(0,0,0,.35);}
+  .sdw-grid figcaption, .sdw-ex figcaption{font-size:.75rem; opacity:.75;}
+  .sdw-label{font-size:.8125rem; font-weight:600; margin:10px 0 12px;}
+  .sdw-label a{text-underline-offset:3px;}
+  .sdw-ex{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:14px;}
+  @media (max-width:760px){ .sdw-grid{grid-template-columns:1fr 1fr; gap:12px;} .sdw-ex{grid-template-columns:1fr 1fr;} }
+  .poster-grid{display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:14px;}
+  .poster-grid figure{margin:0; display:flex; flex-direction:column; gap:8px;}
+  .poster-grid a{display:block; border-radius:6px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.35); transition:transform .3s;}
+  .poster-grid a:hover{transform:translateY(-4px);}
+  .poster-grid img{display:block; width:100%; height:auto;}
+  .poster-grid figcaption{font-size:.75rem; opacity:.75;}
+  .poster-note{font-size:.75rem; opacity:.6; margin-top:12px;}
+  @media (max-width:760px){ .poster-grid{grid-template-columns:repeat(2, minmax(0, 1fr));} }
+  .lca-grid{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px;}
+  .lca-card{background:var(--paper); color:var(--ink); border-radius:12px; padding:24px; display:flex; flex-direction:column; gap:12px; box-shadow:0 10px 30px rgba(0,0,0,.25); text-align:left;}
+  .lca-card h4{margin:0; font-size:1.375rem; font-weight:800; letter-spacing:-.03em; line-height:1.1;}
+  .lca-eyebrow{font-size:.6875rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--red);}
+  .lca-sub{font-size:.8125rem; color:var(--muted); margin-top:-6px;}
+  .lca-legend{display:flex; gap:16px; font-size:.75rem; color:var(--muted);}
+  .lca-legend span{display:flex; align-items:center; gap:6px;}
+  .lca-legend i, .lca-mats i{width:10px; height:10px; border-radius:3px; display:inline-block; flex:none;}
+  i.o{background:#bcc0b2;} i.n{background:#363d2e;}
+  .lca-rows{display:flex; flex-direction:column; gap:14px; margin-top:2px;}
+  .lca-item{display:grid; grid-template-columns:112px minmax(0, 1fr); gap:14px; align-items:center;}
+  .lca-item .k{border-right:1px solid #d9d7d2; padding-right:14px; text-align:right;}
+  .lca-item .k strong{display:block; font-size:.8125rem; font-weight:700; line-height:1.2;}
+  .lca-item .k small{display:block; font-size:.6875rem; color:var(--muted); margin-top:2px; line-height:1.25;}
+  .lca-pair{display:flex; flex-direction:column; gap:5px;}
+  .lca-b{display:flex; align-items:center; gap:8px; font-size:.75rem; font-weight:500; font-variant-numeric:tabular-nums;}
+  .lca-b i{display:block; flex:none; height:10px; min-width:2px; width:0; border-radius:0 4px 4px 0; background:#bcc0b2; transition:width .9s cubic-bezier(.2,.7,.2,1);}
+  .lca-b.n i{background:#363d2e; transition-delay:.12s;}
+  .is-drawn .lca-b i{width:calc((100% - 64px) * var(--w) / 100);}
+  .lca-desc{font-size:.8125rem; line-height:1.5; color:#3c3e44;}
+  .lca-card.lca-hero .lca-desc{color:rgba(255,255,255,.92); max-width:40ch;}
+  .lca-foot{font-size:.75rem; color:var(--muted); margin-top:auto; padding-top:4px;}
+  .lca-foot strong{color:var(--ink);}
+  .lca-card.lca-hero{background:var(--red); color:var(--white); grid-column:1 / -1; display:grid; grid-template-columns:minmax(0, 1.15fr) minmax(0, 1fr); gap:20px 48px; align-items:end;}
+  .lca-hero-l, .lca-hero-r{display:flex; flex-direction:column; gap:12px; min-width:0;}
+  .lca-hero-r{padding-bottom:2px;}
+  .lca-card.lca-wide{grid-column:1 / -1;}
+  .lca-card.lca-pic{padding:0; overflow:hidden; background:var(--ink); margin:0;}
+  .lca-pic img{display:block; width:100%; height:auto;}
+  .lca-swaps{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0 40px; align-items:start;}
+  .lca-card.lca-hero .lca-eyebrow{color:rgba(255,255,255,.85);}
+  .lca-big{font-size:clamp(2.75rem, 6vw, 4.5rem); font-weight:800; letter-spacing:-.05em; line-height:.95; margin-top:8px;}
+  .lca-big span{font-weight:500; opacity:.85;}
+  .lca-unit{font-size:.875rem; opacity:.9;}
+  .lca-card.lca-hero .lca-b{font-size:.8125rem;}
+  .lca-card.lca-hero .lca-b i{height:12px; background:rgba(255,255,255,.45);}
+  .lca-card.lca-hero .lca-b.n i{background:var(--white);}
+  .lca-tag{align-self:flex-start; background:var(--ink); color:var(--white); font-weight:700; font-size:.8125rem; padding:7px 14px; border-radius:999px; margin-top:4px;}
+  .lca-swap{display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:12px; align-items:center; border-top:1px solid #d9d7d2; padding-top:14px;}
+  .lca-part{font-size:.8125rem; font-weight:700;}
+  .lca-part small{font-weight:400; color:var(--muted); font-size:.75rem;}
+  .lca-mats{display:flex; flex-wrap:wrap; align-items:center; gap:4px 8px; font-size:.8125rem; margin-top:6px;}
+  .lca-mats span{display:inline-flex; align-items:center; gap:6px;}
+  .lca-mats b{font-size:1.125rem; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums;}
+  .lca-mats .was{color:var(--muted);} .lca-mats .was b{color:var(--muted);}
+  .lca-mats .arrow{color:var(--red); font-weight:700;}
+  .lca-note{font-size:.6875rem; color:var(--muted); margin-top:4px;}
+  .lca-cut{font-size:1.75rem; font-weight:800; letter-spacing:-.04em;}
+  .sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
+  @media (max-width:760px){ .lca-grid{grid-template-columns:1fr;} .lca-card.lca-hero{grid-template-columns:1fr;} .lca-swaps{grid-template-columns:1fr;} .lca-card{padding:20px;} .lca-item{grid-template-columns:96px minmax(0, 1fr); gap:12px;} .lca-item .k{padding-right:12px;} }
+  @media (prefers-reduced-motion:reduce){ .lca-b i{transition:none;} }
+  .work-detail .poster img{width:100%; height:auto; border-radius:6px; box-shadow:0 10px 30px rgba(0,0,0,.35);}
+  .work-detail .poster figcaption{font-size:.75rem; opacity:.75; margin-top:6px;}
+  .work-detail .lca{margin:6px 0 0; display:flex; flex-direction:column; gap:10px; max-width:520px;}
+  .work-detail .lca figcaption{font-size:.8125rem; opacity:.75;}
+  .lca-row{display:grid; grid-template-columns:76px minmax(0, 1fr) 60px; align-items:center; gap:12px; font-size:.875rem;}
+  .lca-track{height:14px; border-radius:4px; background:rgba(255,255,255,.08); overflow:hidden;}
+  .lca-bar{display:block; height:100%; border-radius:0 4px 4px 0; background:rgba(255,255,255,.55);}
+  .lca-row.is-new .lca-bar{background:var(--red);}
+  .lca-val{text-align:right; font-variant-numeric:tabular-nums; font-weight:500;}
+  .lca-note{font-size:.875rem;}
+  .empty{text-align:center; padding:48px 16px; color:var(--muted); background:var(--white);}
+  .filter-pill{position:fixed; z-index:30; left:50%; bottom:calc(18px + env(safe-area-inset-bottom, 0px)); transform:translate(-50%, 160%); opacity:0; transition:transform .45s cubic-bezier(.22,.61,.36,1), opacity .3s; background:var(--red); color:var(--white); border-radius:999px; padding:6px 6px 6px 8px; display:flex; align-items:center; gap:8px; white-space:nowrap; box-shadow:0 6px 24px rgba(17,19,25,.18); max-width:calc(100vw - 32px);}
+  .filter-pill.is-shown{transform:translate(-50%, 0); opacity:1;}
+  .filter-pill button{border:1.5px solid var(--white); border-radius:999px; padding:2px 12px; font-size:.875rem; font-weight:500; overflow:hidden; text-overflow:ellipsis; min-width:0;}
+  .filter-pill button:hover{background:var(--white); color:var(--red);}
+  .filter-pill .count{flex:none; min-width:28px; height:28px; border-radius:50%; background:var(--white); color:var(--red); display:grid; place-items:center; font-weight:700; font-size:.8125rem;}
+
+  /* ---------- in numbers ---------- */
+  .numbers{padding-block:clamp(64px, 9vw, 120px);}
+  .numbers-grid{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); margin-top:clamp(36px, 5vw, 64px); border-top:1px solid rgba(17,19,25,.15);}
+  .stat{display:flex; flex-direction:column; gap:8px; padding:28px 20px 0 0; min-width:0;}
+  .stat + .stat{padding-left:20px; border-left:1px solid rgba(17,19,25,.15);}
+  .stat .num{font-size:clamp(3.6rem, 8vw, 7.5rem); font-weight:800; letter-spacing:-.05em; line-height:.9; font-variant-numeric:tabular-nums;}
+  .stat .num sup{font-size:.35em; color:var(--red); vertical-align:top; position:relative; top:.25em;}
+  .stat .label{font-weight:700; font-size:1.0625rem; letter-spacing:-.01em;}
+  .stat .sub{font-size:.875rem; color:var(--muted);}
+
+  /* ---------- what I do: panels that stack as you scroll ---------- */
+  .services{padding-block:clamp(56px, 8vw, 104px) clamp(72px, 10vw, 140px);}
+  .services-head{display:flex; justify-content:space-between; align-items:flex-end; gap:16px 32px; flex-wrap:wrap; margin-bottom:clamp(28px, 4vw, 48px);}
+  .services-head h2{font-size:clamp(2.6rem, 7vw, 6.5rem); font-weight:800; letter-spacing:-.045em; line-height:.9;}
+  .services-head p{max-width:38ch; color:#3c3e44;}
+  .stack{display:flex; flex-direction:column; gap:22px;}
+  .panel{position:sticky; top:calc(var(--header-h) + env(safe-area-inset-top, 0px) + 20px + var(--i) * 18px); min-height:min(64vh, 520px); border-radius:18px; padding:clamp(24px, 4vw, 48px); display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1.2fr); gap:24px clamp(24px, 5vw, 72px); align-items:start; box-shadow:0 -10px 40px rgba(17,19,25,.08);}
+  .panel .letter{font-size:clamp(5rem, 14vw, 13rem); font-weight:800; letter-spacing:-.06em; line-height:.8;}
+  .panel h3{font-size:clamp(1.9rem, 3.8vw, 3.4rem); font-weight:700; letter-spacing:-.04em; line-height:1;}
+  .panel .panel-body{display:flex; flex-direction:column; gap:16px; min-width:0;}
+  .panel p{max-width:44ch; font-size:1.0625rem;}
+  .panel .tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .panel .tags .pill{font-size:.8125rem; padding:3px 12px;}
+  .panel-a{background:var(--white); color:var(--ink);}
+  .panel-a .letter{color:var(--red);}
+  .panel-b{background:var(--cream); color:var(--ink);}
+  .panel-b .letter{color:var(--red);}
+  .panel-c{background:var(--red); color:var(--white);}
+  .panel-d{background:var(--ink); color:var(--white);}
+  .panel-d .letter{color:var(--red);}
+
+  /* ---------- ink bands ---------- */
+  .ink{background:var(--ink); color:var(--white); position:relative; overflow:hidden;}
+  .signature{position:absolute; inset:0; display:grid; place-items:center; font-family:var(--script); font-size:clamp(12rem, 42vw, 40rem); line-height:1; color:rgba(255,255,255,.06); transform:rotate(-12deg); pointer-events:none; user-select:none; white-space:nowrap;}
+  .talk{display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:18px; padding-block:clamp(88px, 12vw, 150px);}
+  .talk > *{position:relative;}
+  .talk p{color:#c9cbd0; max-width:44ch;}
+  .ink .btn-pill:hover{background:var(--white); color:var(--ink);}
+
+  /* ---------- about ---------- */
+  .about{background:var(--red); color:var(--white); padding-block:clamp(56px, 8vw, 104px);}
+  .about-grid{display:grid; grid-template-columns:minmax(0, .8fr) minmax(0, 1fr) minmax(0, 1.25fr); gap:32px clamp(24px, 4vw, 56px); margin-top:clamp(36px, 5vw, 64px); align-items:start;}
+  .about-grid h2{font-size:clamp(1.75rem, 2.6vw, 2.25rem); font-weight:800; letter-spacing:-.04em;}
+  .about-grid figure{margin:18px 0 0; max-width:260px;}
+  .about-grid figure img{width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; object-position:50% 62%;}
+  .about-list{list-style:none; margin:0; padding:0; font-size:clamp(1.6rem, 2.7vw, 2.4rem); letter-spacing:-.035em; line-height:1.18;}
+  .about-text{display:flex; flex-direction:column; gap:14px; font-size:1.0625rem; line-height:1.5;}
+  .archive{padding-block:clamp(56px, 8vw, 104px);}
+  .archive.cream{background:var(--cream);}
+  .archive-grid{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:clamp(40px, 6vw, 72px) clamp(32px, 6vw, 96px); margin-top:clamp(40px, 6vw, 72px);}
+  .entry{display:flex; flex-direction:column; gap:10px; min-width:0;}
+  .entry .ctx{font-size:.75rem; font-weight:500;}
+  .entry h3{font-size:clamp(1.75rem, 3.4vw, 2.75rem); font-weight:400; letter-spacing:-.035em; line-height:1.05;}
+  .entry .org{font-weight:500; margin-top:-4px;}
+  .entry .pills{display:flex; flex-wrap:wrap; gap:6px;}
+
+  /* ---------- contact ---------- */
+  .contact{display:flex; flex-direction:column; align-items:center; gap:22px; padding-block:clamp(80px, 11vw, 140px) 36px;}
+  .contact > *{position:relative;}
+  .contact .lede{text-align:center; color:#c9cbd0;}
+  .contact h2{text-align:center;}
+  .sentence{width:100%; max-width:1080px; display:flex; flex-direction:column; gap:20px; margin-top:8px;}
+  .sentence .fill{font-size:clamp(1.5rem, 3.4vw, 2.9rem); font-weight:500; letter-spacing:-.035em; line-height:1.45;}
+  .sentence input, .sentence select{background:transparent; border:0; border-bottom:2px solid rgba(255,255,255,.45); border-radius:0; padding:0 .1em; color:var(--white); font-weight:700; letter-spacing:-.03em; max-width:100%; transition:border-color .2s;}
+  .sentence input::placeholder{color:rgba(255,255,255,.38);}
+  .sentence input:focus, .sentence select:focus{outline:none; border-bottom-color:var(--red);}
+  .sentence select{-webkit-appearance:none; appearance:none; padding-right:.6em; background-image:linear-gradient(45deg, transparent 50%, var(--red) 50%), linear-gradient(135deg, var(--red) 50%, transparent 50%); background-size:.22em .22em; background-position:right .1em center, right 0 center; background-repeat:no-repeat; cursor:pointer;}
+  .sentence select option{color:var(--ink);}
+  #f-name{width:7.5ch;} #f-org{width:11ch;} #f-email{width:12ch;}
+  .sentence textarea{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.18); border-radius:12px; padding:14px 16px; color:var(--white); min-height:96px; resize:vertical; width:100%;}
+  .sentence textarea::placeholder{color:rgba(255,255,255,.45);}
+  .sentence textarea:focus{outline:none; border-color:var(--red);}
+  .form-row{display:flex; flex-wrap:wrap; gap:12px 16px; align-items:center;}
+  .btn-red{background:var(--red); border-color:var(--red); color:var(--white);}
+  .ink .btn-red:hover{background:var(--white); border-color:var(--white); color:var(--ink);}
+  .form-status{font-size:.9375rem; color:#d6dccb;}
+  .ready{border:1px solid rgba(255,255,255,.18); border-radius:14px; padding:18px; display:flex; flex-direction:column; gap:12px;}
+  .ready pre{margin:0; white-space:pre-wrap; font-family:var(--sans); font-size:.9375rem; color:#d9dbe0; overflow-wrap:anywhere;}
+  .socials{font-size:clamp(2rem, 5.6vw, 4.5rem); font-weight:800; letter-spacing:-.045em; line-height:1.05; text-wrap:balance; text-align:center; margin-top:clamp(32px, 5vw, 64px);}
+  .socials a{text-decoration:none; transition:color .2s; overflow-wrap:anywhere;}
+  .socials a:hover{color:var(--red);}
+  .socials .dot{color:var(--red);}
+  .contact .line{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; align-items:center;}
+  .copy{font-size:.75rem; opacity:.75; text-decoration:underline; text-underline-offset:3px;}
+  .copy:hover{opacity:1;}
+  .contact footer{padding-top:48px; font-size:.75rem; color:#8d9096; display:flex; gap:8px 24px; flex-wrap:wrap; justify-content:center;}
+  .contact footer a{text-decoration:none;}
+  .contact footer a:hover{color:var(--white);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .stat{padding-right:12px;}
+    .stat + .stat{padding-left:12px;}
+    .stat .num{font-size:clamp(2.6rem, 12vw, 3.6rem);}
+    .about-grid{grid-template-columns:1fr 1fr;}
+    .about-text{grid-column:1 / -1;}
+  }
+  @media (max-width:760px){
+    .hero-main{grid-template-columns:1fr;}
+    .fan{width:min(68%, 270px); margin:44px auto 40px; left:-22px;}
+    .panel{grid-template-columns:1fr; min-height:0;}
+  }
+  @media (max-width:640px){
+    .hero{min-height:0;}
+    .clock{display:none;}
+    .archive-grid{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr;}
+    .work-tags{flex-direction:row; flex-wrap:wrap; justify-content:center; width:100%; padding-top:6px;}
+    .work-detail{grid-template-columns:1fr;}
+    .filters .fbtn{font-size:.9375rem;}
+    .site-header nav a{padding:2px 8px; font-size:.875rem;}
+    .header-row{gap:4px 12px; padding-block:6px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important; animation:none !important;}
+    .statement .w{color:var(--ink);}
+    .statement .w.mark{color:var(--red);}
+  }
+</style>
+
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="name" href="#home">Cassidy Thng</a>
+    <span class="clock" id="clock" aria-label="Local time in Singapore">Singapore</span>
+    <nav aria-label="Sections">
+      <a href="#work" data-page="work">Work</a>
+      <a href="#about" data-page="about">About</a>
+      <a href="journey/projects.html">Write-ups</a>
+      <a href="resume/Cassidy-Thng-Resume.pdf">Résumé</a>
+      <a href="https://cassthng.github.io/Cassidy-Portfolio/">Photos ↗</a>
+      <a href="#contact" data-page="contact">Contact</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+<div class="page" id="page-home" data-page="home">
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="intro" aria-label="Introduction">
+    <div class="wrap hero-main">
+      <div class="hero-copy">
+        <p class="hi">Hi,<br>I am Cassidy.</p>
+        <h1 class="roles" aria-label="Engineering student, event photographer, private tutor, essay marker and technical intern">
+          <span class="line" aria-hidden="true" id="role-a">engineering</span>
+          <span class="line" aria-hidden="true" id="role-b">student</span>
+        </h1>
+        <p class="intro">I'm an Engineering Systems &amp; Design undergraduate at SUTD, specialising in Business Analytics and Finance, with Design and AI. I build prototypes, teach, mark essays and photograph events.</p>
+        <p class="since"><span>Based in Singapore</span><span>Photographing since 2020</span><span>Teaching since 2024</span></p>
+      </div>
+      <div class="fan" id="fan" role="button" tabindex="0" aria-label="Shuffle photos">
+        <figure class="card" data-pos="0"><img src="work-1d-car.jpg" alt="The team's 3D-printed rubber-band car with large treaded wheels" width="1050" height="1400"><figcaption>1D Challenge car</figcaption></figure>
+        <figure class="card" data-pos="1"><img src="work-speakeasy.jpg" alt="The SpeakEasy team with their poster at the SUTD showcase" width="1050" height="1400"><figcaption>SpeakEasy</figcaption></figure>
+        <figure class="card" data-pos="2"><img src="work-dtp-projectile.jpg" alt="A 3D-printed skull projectile with a tennis ball fitted inside" width="900" height="1200"><figcaption>Cannon challenge</figcaption></figure>
+        <figure class="card" data-pos="3"><img src="work-wedding.jpg" alt="A couple kissing at the altar, in black and white" width="1400" height="928"><figcaption>Wedding</figcaption></figure>
+        <span class="fan-hint" aria-hidden="true">tap to shuffle</span>
+      </div>
+    </div>
+    <a class="explore" href="#work">Explore my work</a>
+  </section>
+
+  <!-- ================= STATEMENT ================= -->
+  <section class="statement" aria-label="What I do, in one line">
+    <div class="wrap">
+      <p id="statement" data-marks="engineering teaching photography">I combine engineering, teaching and photography to turn complex ideas into working prototypes, clear lessons and honest photographs.</p>
+    </div>
+  </section>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marquee">
+      <span>engineering</span><span class="r">✳</span><span class="o">prototyping</span><span class="r">✳</span><span>teaching</span><span class="r">✳</span><span class="o">photography</span><span class="r">✳</span><span>design</span><span class="r">✳</span><span class="o">engineering</span><span class="r">✳</span><span>prototyping</span>
+    </div>
+  </div>
+
+  <!-- ================= SELECTED WORK (preview) ================= -->
+  <section class="featured" aria-labelledby="featured-title">
+    <div class="work-head">
+      <div class="wrap">
+        <p class="work-intro">Highlights from my projects, campaigns and photography.</p>
+        <h2 class="giant work-title" id="featured-title">selected work<sup id="featured-count">4</sup></h2>
+      </div>
+    </div>
+    <div class="work-list">
+      <div class="wrap">
+        <ul id="featured"></ul>
+        <p class="see-all"><a class="btn-pill" href="#work" id="see-all">See all work</a><a class="btn-pill" href="journey/projects.html">Read the project write-ups</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= IN NUMBERS ================= -->
+  <section class="numbers" aria-labelledby="numbers-title">
+    <div class="wrap">
+      <h2 class="eyebrow" id="numbers-title">In numbers</h2>
+      <div class="numbers-grid">
+        <div class="stat"><p class="num"><span data-count="6" data-since="2020">6</span><sup>+</sup></p><p class="label">Years behind the camera</p><p class="sub">Events and weddings since 2020</p></div>
+        <div class="stat"><p class="num"><span data-count="2" data-since="2024">2</span><sup>+</sup></p><p class="label">Years teaching</p><p class="sub">SGEducators and private students</p></div>
+        <div class="stat"><p class="num"><span data-count="11" id="stat-works">11</span></p><p class="label">Selected works</p><p class="sub">Engineering, campaigns and photography</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHAT I DO (stacking panels) ================= -->
+  <section class="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="services-head">
+        <h2 id="services-title">What I do.</h2>
+        <p>The skills I bring to a team, a classroom or an event.</p>
+      </div>
+      <div class="stack">
+        <article class="panel panel-a" style="--i:0">
+          <p class="letter" aria-hidden="true">A</p>
+          <div class="panel-body">
+            <h3>Engineering &amp; prototyping</h3>
+            <p>From CAD model to 3D-printed prototype, tested and refined until it works under real-world constraints.</p>
+            <div class="tags"><span class="pill">Rhino</span><span class="pill">Onshape</span><span class="pill">3D printing</span><span class="pill">Python</span><span class="pill">React</span><span class="pill">Firebase</span><span class="pill">Systems optimisation</span></div>
+          </div>
+        </article>
+        <article class="panel panel-b" style="--i:1">
+          <p class="letter" aria-hidden="true">B</p>
+          <div class="panel-body">
+            <h3>Teaching &amp; marking</h3>
+            <p>Teaching at a tuition centre and with private students, and marking essays with clear, fair and constructive feedback.</p>
+            <div class="tags"><span class="pill">Tutoring</span><span class="pill">Essay marking</span><span class="pill">Standardised grading</span><span class="pill">Student feedback</span></div>
+          </div>
+        </article>
+        <article class="panel panel-c" style="--i:2">
+          <p class="letter" aria-hidden="true">C</p>
+          <div class="panel-body">
+            <h3>Photography</h3>
+            <p>Events and weddings, shot on film or digital depending on the moment.</p>
+            <div class="tags"><span class="pill">Events</span><span class="pill">Weddings</span><span class="pill">Street</span><span class="pill">Landscape</span><span class="pill">Film &amp; digital</span></div>
+          </div>
+        </article>
+        <article class="panel panel-d" style="--i:3">
+          <p class="letter" aria-hidden="true">D</p>
+          <div class="panel-body">
+            <h3>Design &amp; media</h3>
+            <p>Posters, hiring adverts and social media content that draw people in, from parish events to a mission trip.</p>
+            <div class="tags"><span class="pill">Graphic design</span><span class="pill">Social media</span><span class="pill">Adobe Photoshop</span><span class="pill">Adobe Illustrator</span><span class="pill">Canva</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LET'S TALK ================= -->
+  <section class="ink" aria-labelledby="talk-title">
+    <div class="signature" aria-hidden="true">Cassidy</div>
+    <div class="wrap talk">
+      <h2 class="giant" id="talk-title">let's talk</h2>
+      <p>I'm open to internships, part-time roles, tutoring and event photography.</p>
+      <a class="btn-pill" href="#contact">Get in touch</a>
+    </div>
+  </section>
+
+</div>
+
+<div class="page" id="page-work" data-page="work">
+  <!-- ================= SELECTED WORK ================= -->
+  <section id="work-section" aria-labelledby="work-title">
+    <div class="work-head">
+      <div class="wrap">
+        <p class="work-intro">Engineering projects, outreach campaigns and photography. Select any row to see the details.</p>
+        <div class="filters">
+          <div class="col" id="disc-filters"><p class="col-label">Discipline</p></div>
+          <div class="col" id="type-filters"><p class="col-label">Type</p></div>
+        </div>
+        <h2 class="giant work-title" id="work-title">selected work<sup id="work-count">0</sup></h2>
+      </div>
+    </div>
+    <div class="work-list">
+      <div class="wrap">
+        <ul id="works"></ul>
+        <p class="empty" id="empty" hidden>Nothing matches that combination yet. Try another filter.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="page" id="page-about" data-page="about">
+  <!-- ================= ABOUT ================= -->
+  <section id="about-section" aria-labelledby="about-title">
+    <div class="about">
+      <div class="wrap">
+        <p class="eyebrow">Few words</p>
+        <div class="about-grid">
+          <div>
+            <h2 id="about-title">about me</h2>
+            <figure><img src="portrait.jpg" alt="Cassidy Thng sitting on a bench in a cedar forest, camera in hand" width="800" height="1200"></figure>
+          </div>
+          <ul class="about-list">
+            <li>Engineering Design</li>
+            <li>Rapid Prototyping</li>
+            <li>3D Printing</li>
+            <li>Computational Modelling</li>
+            <li>Data &amp; Python</li>
+            <li>Teaching</li>
+            <li>Photography</li>
+            <li>&amp;more</li>
+          </ul>
+          <div class="about-text">
+            <p>I'm an Engineering Systems &amp; Design undergraduate at the Singapore University of Technology and Design, on the Business Analytics and Finance track, alongside Design and Artificial Intelligence.</p>
+            <p>I enjoy mechanical problem-solving, rapid prototyping and systems optimisation. I like turning complex ideas into reliable physical prototypes through 3D printing, computational modelling in Rhino and Onshape, and rigorous testing. I use Python for data processing and technical analysis, and work with React, Firebase and Node.js at the Digital Church Office.</p>
+            <p>Outside university, I teach at SGEducators Tuition Centre, mark essays at Writers' Guild Learning Centre and photograph events, which I've done since 2020.</p>
+            <p>I work iteratively, pay close attention to detail and collaborate well.</p>
+            <p><a href="resume/Cassidy-Thng-Resume.pdf">Download my one-page résumé (PDF) ↓</a> · <a href="journey/projects.html">Read the project write-ups →</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive">
+      <div class="wrap">
+        <h2 class="eyebrow">Experience</h2>
+        <div class="archive-grid">
+          <article class="entry"><p class="ctx">Sep 2026 – present · Singapore</p><h3>Technical Intern</h3><p class="org">Digital Church Office (DCO)</p><div class="pills"><span class="pill">Release QA</span><span class="pill">React &amp; Firebase</span><span class="pill">SingPass</span><span class="pill">Hackathon</span><span class="pill">Social media</span></div></article>
+          <article class="entry"><p class="ctx">Jun 2026 – present</p><h3>Essay Marker</h3><p class="org">Writers' Guild Learning Centre</p><div class="pills"><span class="pill">Essay marking</span><span class="pill">Student feedback</span></div></article>
+          <article class="entry"><p class="ctx">Jun – Jul 2025 · Bukit Batok</p><h3>Intern</h3><p class="org">Fraternitas, St Mary of the Angels</p><div class="pills"><span class="pill">Social media</span><span class="pill">Graphic design</span><span class="pill">Outreach</span></div></article>
+          <article class="entry"><p class="ctx">2024 – present</p><h3>Teacher</h3><p class="org">SGEducators Tuition Centre</p><div class="pills"><span class="pill">Tutoring</span></div></article>
+          <article class="entry"><p class="ctx">2024 – present</p><h3>Private Tutor</h3><p class="org">Freelance</p><div class="pills"><span class="pill">One-to-one tutoring</span></div></article>
+          <article class="entry"><p class="ctx">2020 – present</p><h3>Freelance Photographer</h3><p class="org">Events and weddings</p><div class="pills"><span class="pill">Events</span><span class="pill">Weddings</span><span class="pill">Film &amp; digital</span></div></article>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive cream">
+      <div class="wrap">
+        <h2 class="eyebrow">Education &amp; skills</h2>
+        <div class="archive-grid">
+          <article class="entry"><p class="ctx">Aug 2025 – May 2029 · Bachelor of Engineering</p><h3>Singapore University of Technology and Design</h3><div class="pills"><span class="pill">Engineering Systems &amp; Design</span><span class="pill">Business Analytics &amp; Finance</span><span class="pill">Design and AI</span></div></article>
+          <article class="entry"><p class="ctx">Toolkit</p><h3>Engineering &amp; data</h3><div class="pills"><span class="pill">Rhino</span><span class="pill">Onshape</span><span class="pill">3D printing</span><span class="pill">Python</span><span class="pill">React</span><span class="pill">Firebase</span><span class="pill">Node.js</span><span class="pill">Postman</span><span class="pill">Git &amp; GitHub</span><span class="pill">Microsoft Excel</span></div></article>
+          <article class="entry"><p class="ctx">2020 – 2021</p><h3>Catholic Junior College</h3><div class="pills"><span class="pill">A-Levels</span></div></article>
+          <article class="entry"><p class="ctx">Toolkit</p><h3>Design &amp; media</h3><div class="pills"><span class="pill">Adobe Photoshop</span><span class="pill">Adobe Illustrator</span><span class="pill">Canva</span><span class="pill">Microsoft Word</span></div></article>
+          <article class="entry"><p class="ctx">2016 – 2019</p><h3>St. Patrick's School</h3><div class="pills"><span class="pill">O-Levels</span></div></article>
+          <article class="entry"><p class="ctx">Speaking</p><h3>Languages</h3><div class="pills"><span class="pill">English</span><span class="pill">Chinese</span><span class="pill">Hokkien</span></div></article>
+          <article class="entry"><p class="ctx">2010 – 2015</p><h3>St. Joseph's Institution Junior</h3><div class="pills"><span class="pill">PSLE</span></div></article>
+          <article class="entry"><p class="ctx">Outside work</p><h3>Hobbies</h3><div class="pills"><span class="pill">Reading</span><span class="pill">Travelling</span><span class="pill">Sports</span></div></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="page" id="page-contact" data-page="contact">
+  <!-- ================= CONTACT ================= -->
+  <section class="ink" id="contact-section" aria-labelledby="contact-title">
+    <div class="signature" aria-hidden="true">Cassidy</div>
+    <div class="wrap contact">
+      <p class="lede">Looking for an intern, a tutor or a photographer?</p>
+      <h2 class="giant" id="contact-title">get in touch</h2>
+      <form class="sentence" id="hello-form" novalidate>
+        <p class="fill">Hi Cassidy, I'm <input id="f-name" name="name" autocomplete="name" placeholder="your name" required aria-label="Your name">
+          from <input id="f-org" name="organisation" autocomplete="organization" placeholder="organisation" aria-label="Your organisation (optional)">.
+          I'd like to talk about <select id="f-topic" name="topic" aria-label="Topic">
+            <option>an internship</option><option>a part-time role</option><option>tutoring</option><option>essay marking</option><option>event photography</option><option>something else</option>
+          </select>.
+          You can reach me at <input id="f-email" name="email" type="email" autocomplete="email" placeholder="your email" required aria-label="Your email">.</p>
+        <textarea id="f-more" name="more" placeholder="Anything else I should know? (optional)" aria-label="Anything else (optional)"></textarea>
+        <div class="form-row">
+          <button class="btn-pill btn-red" type="submit" id="f-submit">Write my email</button>
+          <p class="form-status" id="f-status" role="status"></p>
+        </div>
+        <div class="ready" id="f-ready" hidden>
+          <p>Your message to Cassidy is ready. Open it in your email app, or copy it and send it to thngcassidy@gmail.com.</p>
+          <pre id="f-preview"></pre>
+          <div class="form-row">
+            <a class="btn-pill btn-red" id="f-open" href="mailto:thngcassidy@gmail.com" target="_blank" rel="noopener">Open in my email app</a>
+            <button class="btn-pill" type="button" id="f-copy">Copy message</button>
+          </div>
+        </div>
+      </form>
+      <p class="socials"><a href="https://www.linkedin.com/in/cassidy-thng-0378a923a" target="_blank" rel="noopener">linkedin</a><span class="dot">.</span><wbr><a href="https://www.instagram.com/cassidy.films/" target="_blank" rel="noopener">instagram</a><span class="dot">.</span><wbr><a href="https://cassthng.github.io/Cassidy-Portfolio/" target="_blank" rel="noopener">photography</a><span class="dot">.</span><wbr><a href="resume/Cassidy-Thng-Resume.pdf">résumé</a></p>
+      <div class="line"><span id="phone-text">+65 9732 5372</span><button class="copy" type="button" data-copy="+65 9732 5372" data-target="phone-text" id="copy-phone">copy</button></div>
+      <div class="line"><a class="btn-pill" href="mailto:thngcassidy@gmail.com" id="email-text">thngcassidy@gmail.com</a><button class="copy" type="button" data-copy="thngcassidy@gmail.com" data-target="email-text" id="copy-email">copy</button></div>
+      <footer><span>© 2026 Cassidy Thng</span><button type="button" class="to-top">Back to top ↑</button></footer>
+    </div>
+  </section>
+</div>
+</main>
+
+<div class="filter-pill" id="filter-pill" aria-label="Current filter">
+  <button type="button" id="pill-disc" title="Change discipline">All disciplines</button>
+  <span>for</span>
+  <button type="button" id="pill-type" title="Change type">All types</button>
+  <span class="count" id="pill-count">0</span>
+</div>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var currentPage = 'home';
+  function copyText(text, onDone, onFail){
+    try { navigator.clipboard.writeText(text).then(onDone, onFail); } catch (e) { onFail(); }
+  }
+
+  /* ---------- live Singapore clock ---------- */
+  var clock = document.getElementById('clock');
+  function tick(){
+    try {
+      var t = new Intl.DateTimeFormat('en-GB', {timeZone:'Asia/Singapore', hour:'2-digit', minute:'2-digit'}).format(new Date());
+      clock.textContent = 'Singapore ' + t;
+    } catch (e) { clock.textContent = 'Singapore'; }
+  }
+  tick(); setInterval(tick, 20000);
+
+  /* ---------- hero: cycling roles ---------- */
+  var ROLES = [['engineering','student'],['event','photographer'],['private','tutor'],['essay','marker'],['technical','intern']];
+  var lineA = document.getElementById('role-a'), lineB = document.getElementById('role-b');
+  function spans(el, text, cls){
+    el.textContent = '';
+    for (var i = 0; i < text.length; i++){
+      var s = document.createElement('span'); s.className = 'ch' + (cls ? ' ' + cls : '');
+      s.textContent = text[i]; s.style.transitionDelay = Math.min(i * 22, 300) + 'ms';
+      el.appendChild(s);
+    }
+  }
+  spans(lineA, ROLES[0][0]); spans(lineB, ROLES[0][1]);
+  var roleIndex = 0;
+  function nextRole(){
+    roleIndex = (roleIndex + 1) % ROLES.length;
+    [lineA, lineB].forEach(function(el){ el.querySelectorAll('.ch').forEach(function(c){ c.classList.add('above'); }); });
+    setTimeout(function(){
+      spans(lineA, ROLES[roleIndex][0], 'below'); spans(lineB, ROLES[roleIndex][1], 'below');
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        document.querySelectorAll('.roles .ch.below').forEach(function(c){ c.classList.remove('below'); });
+      }); });
+    }, 520);
+  }
+  if (!reduceMotion) setInterval(nextRole, 3200);
+
+  /* ---------- hero: shuffling fan of photos ---------- */
+  var fan = document.getElementById('fan'), cards = Array.prototype.slice.call(fan.querySelectorAll('.card')), shuffling = false;
+  function shuffle(){
+    if (shuffling) return; shuffling = true;
+    var front = cards.filter(function(c){ return c.dataset.pos === '0'; })[0];
+    front.classList.add('leaving');
+    setTimeout(function(){
+      cards.forEach(function(c){ c.dataset.pos = String((+c.dataset.pos + cards.length - 1) % cards.length); });
+      front.classList.remove('leaving');
+      setTimeout(function(){ shuffling = false; }, 300);
+    }, 450);
+  }
+  fan.addEventListener('click', shuffle);
+  fan.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); shuffle(); } });
+  if (!reduceMotion) setInterval(function(){ if (!document.hidden) shuffle(); }, 4200);
+
+  /* ---------- statement: split into words that darken as you scroll ---------- */
+  var statement = document.getElementById('statement');
+  var marks = statement.getAttribute('data-marks').split(/[ ,]+/);
+  statement.innerHTML = statement.textContent.trim().split(/\s+/).map(function(w){
+    var bare = w.replace(/[^a-z]/gi, '').toLowerCase();
+    return '<span class="w' + (marks.indexOf(bare) > -1 ? ' mark' : '') + '">' + w + '</span>';
+  }).join(' ');
+  var words = statement.querySelectorAll('.w');
+  var marquee = document.getElementById('marquee');
+
+  /* ---------- scroll-driven bits: progress bar, statement, marquee ---------- */
+  var progress = document.getElementById('progress'), ticking = false;
+  function onScroll(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      var doc = document.documentElement, max = doc.scrollHeight - doc.clientHeight, vh = window.innerHeight;
+      progress.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+      if (!reduceMotion){
+        var r = statement.getBoundingClientRect();
+        var p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (vh * 0.85 - vh * 0.25 + r.height * 0.4)));
+        var lit = Math.round(p * words.length);
+        for (var i = 0; i < words.length; i++) words[i].classList.toggle('on', i < lit);
+        var m = marquee.getBoundingClientRect();
+        var mp = (vh - m.top) / (vh + m.height);
+        marquee.style.transform = 'translateX(' + (-mp * 40) + '%)';
+      }
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+
+  /* ---------- selected work: things done ---------- */
+  var PHOTO_SITE = '<p><a href="https://cassthng.github.io/Cassidy-Portfolio/" target="_blank" rel="noopener">See the full set on my photography portfolio ↗</a></p>';
+  var WORKS = [
+    {name:'Physical World 1D Challenge', more:'car', disc:'Engineering', type:'Projects', tags:['3D printing','Prototyping','Team of five'], img:'work-1d-car.jpg',
+     when:'SUTD · Physical World', ctx:'Team project, SC01 Group 5',
+     body:'<p>Our team designed, fabricated and tested an autonomous vehicle to carry a 200 g load across a multi-step obstacle course on live challenge day.</p>' +
+       '<p>Our first prototype used a 5:1 gear train driven by a torsion spring, but its peak torque stripped the 3D-printed gear teeth after two rotations. Rather than reinforce a fragile system, we went back to first principles and simplified it.</p>' +
+       '<ul><li>Replaced the gears with an axle-wound rubber band drive for smoother, sustained torque.</li><li>Fitted oversized wheels with rubber-band treads to climb 1 cm to 4 cm steps without slipping.</li><li>Designed a low, wide cargo basket to keep the payload centred and stable.</li><li>Removed a zip-tie release that was snagging the band, just before the run.</li></ul>' +
+       '<p>On the day, the car climbed the steps reliably and delivered its payload to the finish line. Built with Fabian Ngiam, Lim Jia Yi, Soham Tadokar and Wong Jun Ning.</p>' +
+       '<figure class="poster"><img src="work-1d-poster.jpg" alt="Team poster showing the planning, prototyping and resolving stages of the car" width="1085" height="1536" loading="lazy"><figcaption>Project poster, SC01 Group 5</figcaption></figure>'},
+    {name:'SpeakEasy', more:'speakeasy', disc:'Engineering', type:'Projects', tags:['Assistive tech','Raspberry Pi','Speech-to-text'], img:'work-speakeasy.jpg', pos:'center 30%',
+     when:'2026', ctx:'SUTD iDEA project, SC01 Team C',
+     body:'<p>A compact wearable that helps people with speech impairments communicate independently and confidently in everyday conversations. It clips on as a badge or hangs as a necklace, captures speech, filters out background noise and plays a clear, synthesised voice in real time.</p>' +
+       '<p>Our user research found that 75% of hawkers struggle to hear speech-impaired customers during peak hours, so we set out to build something practical and discreet rather than an abstract concept.</p>' +
+       '<ul><li>Explored and set aside bulkier concepts, a smart anti-muffle mask and AI eye-tracking glasses, in favour of one wearable that feels natural to use.</li><li>Tested Vosk against Whisper. Vosk ran faster on the device but made more errors; Whisper was slower but far more accurate, even in noisy settings.</li><li>Moved from breadboards and a Raspberry Pi to a fully integrated CAD housing.</li><li>The working prototype reached 80% accuracy in speech transcription and synthesis.</li></ul>' +
+       '<p>Built with Ho Shu Rui, Amoz Low, Ethan Loh and Ryan Ng.</p>' +
+       '<div class="gallery"><figure class="poster"><img src="work-speakeasy-poster.jpg" alt="SpeakEasy project poster with storyboard, initial iterations, CAD model, test results and exploded model" width="1152" height="1536" loading="lazy"><figcaption>Project poster</figcaption></figure>' +
+       '<figure class="poster"><img src="work-speakeasy-prototype.jpg" alt="Early SpeakEasy prototype: a Raspberry Pi wired to a breadboard with buttons and two speakers" width="900" height="1200" loading="lazy"><figcaption>Early prototype on a Raspberry Pi</figcaption></figure></div>'},
+    {name:'Cannon & Projectile Challenge', more:'cannon', disc:'Engineering', type:'Projects', tags:['Winner','Projectile physics','3D printing'], img:'work-dtp-team.jpg', pos:'center 70%',
+     when:'Nov 2025', ctx:'SUTD Design Thinking Project I, Group SC01-4',
+     body:'<p>One of my first projects at SUTD, and our team won it. As part of the Physical World module, we designed and built a projectile launcher that could accurately predict where its projectile would land.</p>' +
+       '<ul><li>Calculated the trajectory from first principles, accounting for launch angle, velocity and distance.</li><li>Calibrated the launcher through rounds of testing and adjustment until our predictions matched where the projectile actually landed.</li><li>3D-printed the barrel and a custom projectile built around a tennis ball.</li><li>Scored on accuracy across two challenges: 5 points for landing in the laundry bag, 3 for the inflatable pool and 2 for the outer area.</li></ul>' +
+       '<p>It taught me how much of good design is careful iteration. Thank you to our lecturers and teaching assistants for their guidance.</p>' +
+       '<div class="gallery"><figure class="poster"><img src="work-dtp-projectile.jpg" alt="The 3D-printed skull projectile with a tennis ball fitted inside" width="900" height="1200" loading="lazy"><figcaption>Our projectile</figcaption></figure>' +
+       '<figure class="poster"><img src="work-dtp-barrel.jpg" alt="The white 3D-printed launcher barrel" width="900" height="1200" loading="lazy"><figcaption>3D-printed barrel</figcaption></figure>' +
+       '<figure class="poster"><img src="work-dtp-score.jpg" alt="The challenge score sheet on screen, with the target pool and its scoring zones" width="1125" height="1500" loading="lazy"><figcaption>Score sheet and target zones</figcaption></figure></div>'},
+    {name:'Life Cycle Analysis', more:'lca', disc:'Engineering', type:'Projects', tags:['Badminton racket','Granta EduPack','Material selection'], when:'Mar 2026', ctx:'SUTD Science for a Sustainable World',
+     body:'<p>A life cycle analysis of a badminton racket, measuring its CO₂ footprint from material production to end of life, then redesigning it with lower-carbon materials that still perform on court.</p>' +
+       '<ul><li>Modelled the frame (carbon fibre), strings (nylon PA6/66), grip (polyurethane) and handle base (balsa) in Granta EduPack.</li><li>Found that the carbon fibre frame produced about 1.54 kg of the racket’s 1.67 kg of CO₂, because carbonising the fibres needs extreme temperatures.</li><li>Screened alternatives on property charts with performance index lines: toughness for the frame and tensile strength for the strings.</li><li>Replaced carbon fibre with a flax fibre composite and nylon with partially bio-based PA410.</li><li>Compared end-of-life routes, from incineration and landfill to recycling and remanufacturing, in the Singapore context.</li></ul>' +
+       '<p>I led the goal and scope, inventory analysis and impact assessment. Built with Amoz, Chan Yong Le, Ethan and Jia En.</p>',
+     extra:'<div class="lca-grid"><article class="lca-card lca-hero"><div class="lca-hero-l"><p class="lca-eyebrow">Result</p><p class="lca-desc">Swapping just two materials cut the racket’s lifetime footprint by 85%, while keeping the same mass and design.</p><p class="lca-big">1.67 <span aria-hidden="true">→</span><span class="sr"> to </span> 0.24</p><p class="lca-unit">kg CO₂-eq per racket over its life</p></div><div class="lca-hero-r"><div class="lca-pair"><span class="lca-b o" style="--w:100"><i></i>1.67 kg</span><span class="lca-b n" style="--w:14.7"><i></i>0.24 kg</span></div><p class="lca-tag">85% less CO₂</p></div></article><figure class="lca-card lca-wide lca-pic"><img src="work-lca-racket-3d.jpg" alt="3D render of the redesigned racket: flax fibre composite frame, PA410 strings, polyurethane grip and balsa handle base, at 0.24 kg CO₂ per racket" width="2400" height="1500" loading="lazy"></figure><article class="lca-card"><p class="lca-eyebrow">By part</p><h4>The frame is the footprint</h4><p class="lca-sub">kg CO₂-eq per racket</p><p class="lca-desc">We split the racket into its four parts and modelled each one’s material, processing and end of life in Granta EduPack. The frame outweighs everything else, so that is where a redesign pays off.</p><p class="lca-legend"><span><i class="o"></i>Original</span><span><i class="n"></i>Redesign</span></p><div class="lca-rows"><div class="lca-item"><p class="k"><strong>Frame</strong><small>Carbon fibre → flax</small></p><div class="lca-pair"><span class="lca-b o" style="--w:96.3"><i></i>1.54</span><span class="lca-b n" style="--w:7.8"><i></i>0.13</span></div></div><div class="lca-item"><p class="k"><strong>Grip</strong><small>Polyurethane</small></p><div class="lca-pair"><span class="lca-b o" style="--w:3.6"><i></i>0.057</span><span class="lca-b n" style="--w:3.6"><i></i>0.057</span></div></div><div class="lca-item"><p class="k"><strong>Handle base</strong><small>Balsa</small></p><div class="lca-pair"><span class="lca-b o" style="--w:2.4"><i></i>0.038</span><span class="lca-b n" style="--w:2.4"><i></i>0.038</span></div></div><div class="lca-item"><p class="k"><strong>Strings</strong><small>PA6/66 → PA410</small></p><div class="lca-pair"><span class="lca-b o" style="--w:1.9"><i></i>0.030</span><span class="lca-b n" style="--w:1.6"><i></i>0.025</span></div></div></div><p class="lca-foot">The carbon fibre frame made up <strong>93%</strong> of the original racket’s CO₂.</p></article><article class="lca-card"><p class="lca-eyebrow">By stage</p><h4>Where in the life cycle</h4><p class="lca-sub">kg CO₂-eq per racket (the use phase is zero)</p><p class="lca-desc">Grouping the same numbers by stage shows that making the materials causes most of the CO₂. A racket uses no energy while you play, so its impact is front-loaded.</p><p class="lca-legend"><span><i class="o"></i>Original</span><span><i class="n"></i>Redesign</span></p><div class="lca-rows"><div class="lca-item"><p class="k"><strong>Material production</strong><small>Raw materials</small></p><div class="lca-pair"><span class="lca-b o" style="--w:85.8"><i></i>1.37</span><span class="lca-b n" style="--w:4.7"><i></i>0.076</span></div></div><div class="lca-item"><p class="k"><strong>Processing</strong><small>Moulding, layup, machining</small></p><div class="lca-pair"><span class="lca-b o" style="--w:15.8"><i></i>0.25</span><span class="lca-b n" style="--w:2.8"><i></i>0.045</span></div></div><div class="lca-item"><p class="k"><strong>End of life</strong><small>Incineration, landfill</small></p><div class="lca-pair"><span class="lca-b o" style="--w:2.5"><i></i>0.040</span><span class="lca-b n" style="--w:7.8"><i></i>0.12</span></div></div></div><p class="lca-foot">After the redesign, <strong>end of life becomes the largest stage</strong>, so recovery matters more.</p></article><article class="lca-card lca-wide"><p class="lca-eyebrow">Material swaps</p><h4>Two swaps, same job</h4><p class="lca-sub">CO₂ footprint of each material, kg CO₂ per kg</p><p class="lca-desc">We chose replacements on Granta property charts, ranking candidates by the property each part needs divided by its CO₂ footprint.</p><div class="lca-swaps"><div class="lca-swap"><div><p class="lca-part">Frame <small>· needs toughness</small></p><p class="lca-mats"><span class="was"><i class="o"></i>Carbon fibre <b>20.3</b></span><span class="arrow" aria-hidden="true">→</span><span class="now"><i class="n"></i>Flax fibre <b>0.44</b></span></p><p class="lca-note">Renewable and tougher on impact, but less stiff.</p></div><p class="lca-cut">−98%</p></div><div class="lca-swap"><div><p class="lca-part">Strings <small>· needs tensile strength</small></p><p class="lca-mats"><span class="was"><i class="o"></i>Nylon PA6/66 <b>7.26</b></span><span class="arrow" aria-hidden="true">→</span><span class="now"><i class="n"></i>PA410 <b>5.39</b></span></p><p class="lca-note">Partially bio-based, with higher tensile strength (68.4 vs 40 MPa).</p></div><p class="lca-cut">−26%</p></div></div></article></div>'},
+    {name:'Design Computation', more:'computation', disc:'Engineering', type:'Projects', tags:['Grasshopper','Parametric design','Grade A−'], img:'journey/media/par-persp.jpg', when:'2026', ctx:'SUTD Design Computation, Rhino + Grasshopper',
+     body:'<p>Two computational projects in Rhino and Grasshopper, both borrowed from nature. A generative shell built on phyllotaxis and the Golden Angle, and a parametric Voronoi wave inspired by plant tissue, scripted and then 3D-printed as one watertight piece.</p>' +
+       '<ul><li>Explored the shell by exposing its rules as sliders: turning the rotation angle from 179° to 70° opens a dense coil into an organic form.</li><li>Debugged the “Voronoi shuffle”: trimming boundary cells scrambled the data order and sent edge pillars to extreme heights, fixed by locking each height to its own cell’s centroid.</li><li>Fused the pillars into a solid 2 mm floor so the wave printed as a single piece.</li></ul>' +
+       '<p>Graded A−.</p>' +
+       '<div class="gallery"><figure class="poster"><img src="journey/media/gen-shell.jpg" alt="Phyllotaxis shell made of rotated triangular frames" loading="lazy"><figcaption>Phyllotaxis shell</figcaption></figure>' +
+       '<figure class="poster"><img src="journey/media/voronoi-wave.gif" alt="Animation of the Voronoi wave rippling as the phase slider moves" loading="lazy"><figcaption>Scrubbing the phase slider</figcaption></figure>' +
+       '<figure class="poster"><img src="journey/media/dc-print-1615.jpg" alt="The 3D-printed red Voronoi wave" loading="lazy"><figcaption>The printed wave</figcaption></figure></div>'},
+    {name:'myCatholicSG App', more:'dco', disc:'Engineering', type:'Projects', tags:['Release QA','React & Firebase','SingPass','FIAT Hackathon'], img:'work-fiat-bg.jpg', pos:'center 30%', when:'Sep 2026 – present', ctx:'Technical Intern, Digital Church Office (DCO)',
+     body:'<p>As a technical intern at the Digital Church Office, I work on the myCatholicSG app, which Catholics across Singapore use to stay connected with their parishes and the wider Church. It is built with React and Vite on Firebase.</p>' +
+       '<ul><li><strong>Release QA:</strong> I check out developers’ pull requests, run them locally and test them the way parishioners and parish admins use the app. I have tested 10+ features, from room bookings and SEEDs sacrament bookings to CATCH catechism timeslots.</li>' +
+       '<li><strong>Test data and APIs:</strong> I seed a private Firebase project with edge cases, such as clashing bookings, using Node.js scripts, then confirm each fix through the API in Postman.</li>' +
+       '<li><strong>Regression checks:</strong> I verified fixes for password-reset loops, login race conditions and security-audit upgrades, plus a new CATCH audit trail for timeslot and level changes and its CSV export.</li>' +
+       '<li><strong>SingPass with GovTech:</strong> I tested an 84-file SingPass change end to end (consent scopes, the verified badge, NRIC masking, and child and sponsored-child records) and helped prepare the SingPass and Myinfo approval submissions covering 20 data fields, so verified records can pre-fill sacrament and catechism forms.</li>' +
+       '<li><strong>FIAT Catholic Hackathon 2026:</strong> organised FIAT, a three-day hackathon run by the Digital Church Office and supported by the GIFT Catholic Foundation, from 9 to 11 October 2026. 80 participants in 16 teams, with 12 mentors, took on real problems from four Church organisations, framed by worship, adoration and prayer, before pitching to the people who wrote the briefs.</li></ul>' +
+       '<p class="stackline">React · Vite · Firebase · Node.js · Postman · Vitest · Playwright · GitHub Actions</p>' +
+       '<p>Alongside this, I support DCO’s social media work.</p>' +
+       '<figure class="reel"><video src="work-fiat-reel.mp4" poster="work-fiat-poster.jpg" controls playsinline preload="none" width="720" height="1280"></video><figcaption>FIAT recap reel · <a href="https://www.instagram.com/reel/De1UQA1TQu3/" target="_blank" rel="noopener">Watch on Instagram ↗</a></figcaption></figure>'},
+    {name:'Domus Orationis', more:'domus', disc:'Design & media', type:'Projects', tags:['Spatial design','3D printing','Rendering'], img:'work-sdw-exterior.jpg', pos:'center 45%', when:'2026', ctx:'SUTD Spatial Design World, Class 3 Group 6',
+     body:'<p><strong>House of Prayer.</strong> A contemplative retreat house set among the farming terraces of Mù Cang Chải in Vietnam’s highlands. Sunlit timber lattices open the upper floors to views of the hills, while a hidden adoration room is carved into the slope below for prayer and stillness.</p>' +
+       '<ul><li>Generated the form from three lines: swept into volumes, joined, sliced into roof planes, hollowed out, then extended with a second volume, a site platform and a basement stair.</li>' +
+       '<li>Planned a chapel, a two-storey villa for rest and study, and an underground adoration room reached by a spiral stair.</li>' +
+       '<li>Moved from hand sketches to floor plans, an exploded axonometric and interior renders of each space.</li>' +
+       '<li>3D-printed a site model with landscaping and scale figures, shown with our poster at SUTD.</li></ul>' +
+       '<p>Built with Poh Jun Leng, Png Wei Teng and Tristan Fong. Before the group project, my individual exercises looked at my own room at three scales, from plan to the city.</p>',
+     extra:'<div class="sdw-grid"><figure><img src="work-sdw-poster.jpg" alt="Domus Orationis presentation poster with cutaway render, interior renders, form sequence and floor plans" width="1297" height="1800" loading="lazy"><figcaption>Final poster</figcaption></figure><figure><img src="work-sdw-model.jpg" alt="3D-printed model of the chapel, villa and tower on a landscaped base with scale figures and trees" width="1400" height="1111" loading="lazy"><figcaption>3D-printed site model</figcaption></figure><figure><img src="work-sdw-exhibit.jpg" alt="The poster and model on display at SUTD" width="900" height="1200" loading="lazy"><figcaption>On show at SUTD</figcaption></figure><figure><img src="work-sdw-sketch.jpg" alt="Hand sketch of the villa roof and second floor plan with dimensions and notes" width="610" height="815" loading="lazy"><figcaption>Early villa sketches</figcaption></figure></div><p class="sdw-label">Earlier exercises</p><div class="sdw-ex"><figure><img src="work-sdw-exe1.gif" alt="Animated plan of my room at 1:10" width="640" height="640" loading="lazy"><figcaption>Exercise 1 · My room in plan, 1:10</figcaption></figure><figure><img src="work-sdw-exe2.jpg" alt="Isometric drawing of my room at 1:15" width="1000" height="1000" loading="lazy"><figcaption>Exercise 2 · My room in 3D, 1:15</figcaption></figure><figure><img src="work-sdw-exe3.jpg" alt="Drawing of my block and its neighbourhood at 1:300, with my unit outlined in red" width="1000" height="1000" loading="lazy"><figcaption>Exercise 3 · My room in the city, 1:300</figcaption></figure></div>'},
+    {name:'Mission Trip Campaign', more:'mission', disc:'Design & media', type:'Campaigns', tags:['Outreach','Partnership','Event booth'], img:'work-mission-booth.jpg', pos:'center 35%', when:'Jun – Dec 2025', ctx:'Fraternitas × CHARIS',
+     body:'<p>Partnered with CHARIS to promote the Franciscan mission trip to Indonesia, increasing volunteer interest.</p>' +
+       '<p>At the CHARIS event, we ran the Fraternitas booth with a mission trip display board and a Franciscan Young Adults stand, inviting young people to join the trip and the community.</p>' +
+       '<p><a href="https://fraternitas.smugmug.com/Fraternitas-Mission-OFM-Indo/Fraternitas-Mission-2025-TRIP/n-vQ68fN" target="_blank" rel="noopener">See photos from the 2025 mission trip ↗</a></p>' +
+       '<div class="gallery wide"><figure class="poster"><img src="work-mission-booth-2.jpg" alt="The team with a friar at the Fraternitas booth" width="1200" height="900" loading="lazy"><figcaption>At the Fraternitas booth</figcaption></figure>' +
+       '<figure class="poster"><img src="work-mission-booth-3.jpg" alt="Volunteers and guests in front of the mission trip display board" width="1200" height="900" loading="lazy"><figcaption>With guests at the booth</figcaption></figure></div>'},
+    {name:'Social Media', more:'social', disc:'Design & media', type:'Campaigns', tags:['Instagram','Telegram','Graphic design'], when:'2025 – present', ctx:'Fraternitas and Digital Church Office (DCO)',
+     body:'<p>Social media and design work for Catholic communities, from day-to-day content to event posters and hiring adverts.</p>' +
+       '<ul><li><strong>Fraternitas:</strong> grew the fraternity’s online presence by curating and managing content on Instagram and Telegram, and designed posters that boosted outreach and sign-ups.</li>' +
+       '<li><strong>Digital Church Office (DCO):</strong> supporting social media work as a technical intern since September 2026.</li></ul>' +
+       '<p><strong>Selected posters</strong></p>' +
+       '<ul><li><strong>Chill Out with the Friars:</strong> a poster series for vocation evenings for men aged 18 to 35. Each event pairs a cover poster with a profile slide telling a friar’s story, from Friar Robin Toha, OFM in July to Friar Derrick Yap, OFM in September.</li>' +
+       '<li><strong>We’re Hiring Interns:</strong> a collage-style recruitment poster calling for young adults with skills in Canva, WordPress and social media.</li></ul>',
+     extra:'<div class="poster-grid"><figure><a href="https://www.instagram.com/p/DKitCoGvKBE/" target="_blank" rel="noopener" aria-label="Chill Out · Jul 2025, view on Instagram"><img src="work-poster-robin.jpg" alt="Chill Out with the Friars poster for 27 July, with Friar Robin Toha speaking to a group" width="957" height="1195" loading="lazy"></a><figcaption>Chill Out · Jul 2025</figcaption></figure><figure><a href="https://www.instagram.com/p/DKitCoGvKBE/" target="_blank" rel="noopener" aria-label="Friar Robin’s profile, view on Instagram"><img src="work-poster-robin-2.jpg" alt="Profile slide telling Friar Robin Toha’s vocation story" width="957" height="1195" loading="lazy"></a><figcaption>Friar Robin’s profile</figcaption></figure><figure><a href="https://www.instagram.com/p/DODlAz7Eit-/" target="_blank" rel="noopener" aria-label="Chill Out · Sep 2025, view on Instagram"><img src="work-poster-derrick.jpg" alt="Chill Out with the Friars poster for 28 September, with Friar Derrick Yap singing" width="957" height="1195" loading="lazy"></a><figcaption>Chill Out · Sep 2025</figcaption></figure><figure><a href="https://www.instagram.com/p/DODlAz7Eit-/" target="_blank" rel="noopener" aria-label="Friar Derrick’s profile, view on Instagram"><img src="work-poster-derrick-2.jpg" alt="Profile slide telling Friar Derrick Yap’s vocation story" width="957" height="1195" loading="lazy"></a><figcaption>Friar Derrick’s profile</figcaption></figure><figure><a href="https://www.instagram.com/p/DNHrx9zSY9C/" target="_blank" rel="noopener" aria-label="Hiring interns · Aug 2025, view on Instagram"><img src="work-poster-hiring.jpg" alt="Collage-style We’re Hiring Interns poster for Fraternitas" width="957" height="1195" loading="lazy"></a><figcaption>Hiring interns · Aug 2025</figcaption></figure></div><p class="poster-note">Select a poster to see the post on Instagram.</p>'},
+    {name:'Catholic Pitch', disc:'Photography', type:'Commissions', tags:['Event coverage'], img:'work-catholic-pitch.jpg', when:'Commission', ctx:'Event photography',
+     body:'<p>Covered the Catholic Pitch evening, from the welcome and presentations to dinner and the guests.</p>' + PHOTO_SITE},
+    {name:"Dillon & Gzenn's Wedding", disc:'Photography', type:'Commissions', tags:['Wedding','Black & white'], img:'work-wedding.jpg', when:'Commission', ctx:'Wedding photography',
+     body:'<p>Photographed the wedding in black and white, from the vows and the walk down the aisle to the kiss and the group photo.</p>' + PHOTO_SITE}
+  ];
+  var DISCS = ['All disciplines','Engineering','Design & media','Photography'];
+  var TYPES = ['All types','Projects','Campaigns','Commissions'];
+  var state = {disc:'All disciplines', type:'All types'};
+  document.getElementById('stat-works').setAttribute('data-count', WORKS.length);
+  document.getElementById('stat-works').textContent = WORKS.length;
+
+  var list = document.getElementById('works');
+  function makeRow(w, id){
+    var li = document.createElement('li'); li.className = 'work';
+    li.innerHTML =
+      '<div class="work-fill' + (w.img ? ' has-img' : '') + '"' + (w.img ? ' style="background-image:url(' + w.img + ')' + (w.pos ? ';background-position:' + w.pos : '') + '"' : '') + '></div>' +
+      '<button class="work-btn" type="button" aria-expanded="false" aria-controls="' + id + '">' +
+        '<span class="work-name">' + w.name + '</span>' +
+        '<span class="work-tags">' + w.tags.map(function(t){ return '<span class="pill">' + t + '</span>'; }).join('') + '</span>' +
+      '</button>' +
+      '<div class="work-detail" id="' + id + '" hidden>' +
+        '<div class="meta"><span>' + w.when + '</span><span>' + w.ctx + '</span></div>' +
+        '<div class="body">' + w.body + (w.more ? '<p class="more-link"><a href="journey/projects.html#' + w.more + '">Read the full write-up →</a></p>' : '') + '</div>' +
+        (w.extra ? '<div class="extra">' + w.extra + '</div>' : '') +
+      '</div>';
+    li.querySelector('.work-btn').addEventListener('click', function(){
+      var open = !li.classList.contains('is-open');
+      li.classList.toggle('is-open', open);
+      this.setAttribute('aria-expanded', open ? 'true' : 'false');
+      li.querySelector('.work-detail').hidden = !open;
+      li.classList.remove('is-drawn');
+      if (open) requestAnimationFrame(function(){ requestAnimationFrame(function(){ li.classList.add('is-drawn'); }); });
+    });
+    return li;
+  }
+  WORKS.forEach(function(w, i){ w.el = makeRow(w, 'work-detail-' + i); list.appendChild(w.el); });
+  var FEATURED = ['myCatholicSG App', 'Physical World 1D Challenge', 'SpeakEasy', 'Cannon & Projectile Challenge', 'Domus Orationis', 'Mission Trip Campaign', 'Social Media', "Dillon & Gzenn's Wedding"];
+  var featuredList = document.getElementById('featured');
+  WORKS.filter(function(w){ return FEATURED.indexOf(w.name) > -1; }).forEach(function(w, i){ featuredList.appendChild(makeRow(w, 'featured-detail-' + i)); });
+  document.getElementById('featured-count').textContent = FEATURED.length;
+  document.getElementById('see-all').textContent = 'See all ' + WORKS.length + ' works';
+  function matches(w, disc, type){ return (disc === 'All disciplines' || w.disc === disc) && (type === 'All types' || w.type === type); }
+  function count(disc, type){ return WORKS.filter(function(w){ return matches(w, disc, type); }).length; }
+  function buildFilters(boxId, options, key){
+    var box = document.getElementById(boxId);
+    options.forEach(function(opt){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'fbtn'; b.dataset.value = opt;
+      b.addEventListener('click', function(){ state[key] = opt; render(); });
+      box.appendChild(b);
+    });
+  }
+  buildFilters('disc-filters', DISCS, 'disc'); buildFilters('type-filters', TYPES, 'type');
+  function render(){
+    var shown = 0;
+    WORKS.forEach(function(w){ var ok = matches(w, state.disc, state.type); w.el.hidden = !ok; if (ok) shown++; });
+    document.getElementById('empty').hidden = shown > 0;
+    document.getElementById('work-count').textContent = shown;
+    document.getElementById('pill-count').textContent = shown;
+    document.getElementById('pill-disc').textContent = state.disc;
+    document.getElementById('pill-type').textContent = state.type;
+    document.querySelectorAll('#disc-filters .fbtn').forEach(function(b){ var v = b.dataset.value; b.setAttribute('aria-pressed', v === state.disc ? 'true' : 'false'); b.innerHTML = v + '<sup>' + count(v, state.type) + '</sup>'; });
+    document.querySelectorAll('#type-filters .fbtn').forEach(function(b){ var v = b.dataset.value; b.setAttribute('aria-pressed', v === state.type ? 'true' : 'false'); b.innerHTML = v + '<sup>' + count(state.disc, v) + '</sup>'; });
+  }
+  function cycle(key, options){ state[key] = options[(options.indexOf(state[key]) + 1) % options.length]; render(); }
+  document.getElementById('pill-disc').addEventListener('click', function(){ cycle('disc', DISCS); });
+  document.getElementById('pill-type').addEventListener('click', function(){ cycle('type', TYPES); });
+  render();
+
+  /* ---------- counters, floating pill, header highlight ---------- */
+  var thisYear = new Date().getFullYear();
+  document.querySelectorAll('[data-since]').forEach(function(el){
+    var n = Math.max(1, thisYear - +el.getAttribute('data-since')); el.setAttribute('data-count', n); el.textContent = n;
+  });
+  function countUp(el){
+    var end = +el.getAttribute('data-count'), start = performance.now(), dur = 1100;
+    (function step(now){
+      var t = Math.min(1, (now - start) / dur), e = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(end * e);
+      if (t < 1) requestAnimationFrame(step);
+    })(start);
+  }
+  var pill = document.getElementById('filter-pill'), listInView = false;
+  function updatePill(){ pill.classList.toggle('is-shown', currentPage === 'work' && listInView); }
+  var navLinks = document.querySelectorAll('.site-header nav a');
+  if ('IntersectionObserver' in window){
+    if (!reduceMotion){
+      var counted = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ countUp(e.target); counted.unobserve(e.target); } }); }, {threshold:.6});
+      document.querySelectorAll('[data-count]').forEach(function(el){ counted.observe(el); });
+    }
+    new IntersectionObserver(function(es){ es.forEach(function(e){ listInView = e.isIntersecting; updatePill(); }); }, {rootMargin:'-30% 0px -30% 0px'})
+      .observe(document.querySelector('#page-work .work-list'));
+  } else { listInView = true; }
+
+  /* ---------- contact: fill-in-the-blanks message ---------- */
+  var form = document.getElementById('hello-form'), status = document.getElementById('f-status');
+  var ready = document.getElementById('f-ready'), preview = document.getElementById('f-preview'), openLink = document.getElementById('f-open');
+  var message = '';
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('f-name').value.trim();
+    var org = document.getElementById('f-org').value.trim();
+    var topic = document.getElementById('f-topic').value;
+    var emailEl = document.getElementById('f-email'), email = emailEl.value.trim();
+    var more = document.getElementById('f-more').value.trim();
+    if (!name){ status.textContent = 'Add your name so I know who to reply to.'; document.getElementById('f-name').focus(); return; }
+    if (!email || !emailEl.checkValidity()){ status.textContent = 'Add an email address I can reply to, like name@example.com.'; emailEl.focus(); return; }
+    status.textContent = '';
+    message = 'Hi Cassidy,\n\nI’m ' + name + (org ? ' from ' + org : '') + '. I’d like to talk about ' + topic + '.' +
+      (more ? '\n\n' + more : '') + '\n\nYou can reach me at ' + email + '.\n\n' + name;
+    var subject = 'Hello from ' + name + (org ? ', ' + org : '');
+    preview.textContent = message;
+    openLink.href = 'mailto:thngcassidy@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(message);
+    ready.hidden = false;
+  });
+  document.getElementById('f-copy').addEventListener('click', function(){
+    var btn = this;
+    copyText(message, function(){ btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = 'Copy message'; }, 1600); },
+      function(){ var r = document.createRange(); r.selectNodeContents(preview); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected'; });
+  });
+
+  /* ---------- copy buttons ---------- */
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.getAttribute('data-copy');
+      function done(msg){ btn.textContent = msg; setTimeout(function(){ btn.textContent = 'copy'; }, 1600); }
+      copyText(text, function(){ done('copied'); }, function(){
+        var el = document.getElementById(btn.getAttribute('data-target'));
+        var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); done('selected');
+      });
+    });
+  });
+
+  /* ---------- pages: Home is the long scroll; Work, About and Contact open as their own pages ---------- */
+  var PAGES = ['home', 'work', 'about', 'contact'];
+  function show(name){
+    if (PAGES.indexOf(name) === -1) name = 'home';
+    currentPage = name;
+    document.querySelectorAll('.page').forEach(function(pg){ pg.classList.toggle('is-active', pg.dataset.page === name); });
+    navLinks.forEach(function(a){ a.classList.toggle('is-active', a.dataset.page === name); });
+    var html = document.documentElement, prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto'; window.scrollTo(0, 0); html.style.scrollBehavior = prev;
+    updatePill(); onScroll();
+  }
+  function route(){ show((location.hash || '#home').slice(1)); }
+  window.addEventListener('hashchange', route);
+  document.querySelectorAll('.to-top').forEach(function(b){ b.addEventListener('click', function(){ window.scrollTo({top:0, behavior: reduceMotion ? 'auto' : 'smooth'}); }); });
+  route();
+})();
+</script>
+
+</body></html>
