@@ -301,6 +301,10 @@
   .entry h3{font-size:clamp(1.75rem, 3.4vw, 2.75rem); font-weight:400; letter-spacing:-.035em; line-height:1.05;}
   .entry .org{font-weight:500; margin-top:-4px;}
   .entry .pills{display:flex; flex-wrap:wrap; gap:6px;}
+  .entry .facts{margin:2px 0 4px; padding-left:1.1em; display:flex; flex-direction:column; gap:5px; font-size:.9375rem; line-height:1.5; color:#3c3e44;}
+  .entry .facts b{font-weight:600; color:var(--ink);}
+  .entry .stackline{font-size:.8125rem; color:var(--red); font-weight:500;}
+  .entry .readmore{font-weight:700; font-size:.9375rem; text-underline-offset:3px;}
 
   /* ---------- contact ---------- */
   .contact{display:flex; flex-direction:column; align-items:center; gap:22px; padding-block:clamp(80px, 11vw, 140px) 36px;}
@@ -396,7 +400,7 @@
           <span class="line" aria-hidden="true" id="role-a">engineering</span>
           <span class="line" aria-hidden="true" id="role-b">student</span>
         </h1>
-        <p class="intro">I'm an Engineering Systems &amp; Design undergraduate at SUTD, specialising in Business Analytics and Finance, with Design and AI. I build prototypes, teach, mark essays and photograph events.</p>
+        <p class="intro">I'm an Engineering Systems &amp; Design undergraduate at SUTD, specialising in Business Analytics and Finance, with Design and AI. I build prototypes, test the myCatholicSG app as a technical intern at the Digital Church Office, teach, mark essays and photograph events.</p>
         <p class="since"><span>Based in Singapore</span><span>Photographing since 2020</span><span>Teaching since 2024</span></p>
       </div>
       <div class="fan" id="fan" role="button" tabindex="0" aria-label="Shuffle photos">
@@ -461,9 +465,9 @@
         <article class="panel panel-a" style="--i:0">
           <p class="letter" aria-hidden="true">A</p>
           <div class="panel-body">
-            <h3>Engineering &amp; prototyping</h3>
-            <p>From CAD model to 3D-printed prototype, tested and refined until it works under real-world constraints.</p>
-            <div class="tags"><span class="pill">Rhino</span><span class="pill">Onshape</span><span class="pill">3D printing</span><span class="pill">Python</span><span class="pill">React</span><span class="pill">Firebase</span><span class="pill">Systems optimisation</span></div>
+            <h3>Engineering &amp; software</h3>
+            <p>From CAD model to 3D-printed prototype, and from pull request to release: tested and refined until it works under real-world constraints.</p>
+            <div class="tags"><span class="pill">Rhino</span><span class="pill">Onshape</span><span class="pill">3D printing</span><span class="pill">Python</span><span class="pill">React</span><span class="pill">Firebase</span><span class="pill">Postman</span><span class="pill">Git &amp; GitHub</span><span class="pill">Release QA</span></div>
           </div>
         </article>
         <article class="panel panel-b" style="--i:1">
@@ -546,14 +550,15 @@
             <li>3D Printing</li>
             <li>Computational Modelling</li>
             <li>Data &amp; Python</li>
+            <li>Release QA</li>
             <li>Teaching</li>
             <li>Photography</li>
             <li>&amp;more</li>
           </ul>
           <div class="about-text">
             <p>I'm an Engineering Systems &amp; Design undergraduate at the Singapore University of Technology and Design, on the Business Analytics and Finance track, alongside Design and Artificial Intelligence.</p>
-            <p>I enjoy mechanical problem-solving, rapid prototyping and systems optimisation. I like turning complex ideas into reliable physical prototypes through 3D printing, computational modelling in Rhino and Onshape, and rigorous testing. I use Python for data processing and technical analysis, and work with React, Firebase and Node.js at the Digital Church Office.</p>
-            <p>Outside university, I teach at SGEducators Tuition Centre, mark essays at Writers' Guild Learning Centre and photograph events, which I've done since 2020.</p>
+            <p>I enjoy mechanical problem-solving, rapid prototyping and systems optimisation. I like turning complex ideas into reliable physical prototypes through 3D printing, computational modelling in Rhino and Onshape, and rigorous testing. I use Python for data processing and technical analysis, and at the Digital Church Office I test the myCatholicSG parish app (React, Firebase and Node.js) before each release, including its SingPass integration.</p>
+            <p>Outside university, I teach at SGEducators Tuition Centre, mark essays at Writers' Guild Learning Centre and photograph events, which I've done since 2020. On campus I'm House Secretary of Mythos, Publicity Lead for IEEE and Tech Lead for IES.</p>
             <p>I work iteratively, pay close attention to detail and collaborate well.</p>
             <p><a href="resume/Cassidy-Thng-Resume.pdf">Download my one-page résumé (PDF) ↓</a> · <a href="journey/projects.html">Read the project write-ups →</a></p>
           </div>
@@ -565,12 +570,40 @@
       <div class="wrap">
         <h2 class="eyebrow">Experience</h2>
         <div class="archive-grid">
-          <article class="entry"><p class="ctx">Sep 2026 – present · Singapore</p><h3>Technical Intern</h3><p class="org">Digital Church Office (DCO)</p><div class="pills"><span class="pill">Release QA</span><span class="pill">React &amp; Firebase</span><span class="pill">SingPass</span><span class="pill">Hackathon</span><span class="pill">Social media</span></div></article>
-          <article class="entry"><p class="ctx">Jun 2026 – present</p><h3>Essay Marker</h3><p class="org">Writers' Guild Learning Centre</p><div class="pills"><span class="pill">Essay marking</span><span class="pill">Student feedback</span></div></article>
-          <article class="entry"><p class="ctx">Jun – Jul 2025 · Bukit Batok</p><h3>Intern</h3><p class="org">Fraternitas, St Mary of the Angels</p><div class="pills"><span class="pill">Social media</span><span class="pill">Graphic design</span><span class="pill">Outreach</span></div></article>
-          <article class="entry"><p class="ctx">2024 – present</p><h3>Teacher</h3><p class="org">SGEducators Tuition Centre</p><div class="pills"><span class="pill">Tutoring</span></div></article>
-          <article class="entry"><p class="ctx">2024 – present</p><h3>Private Tutor</h3><p class="org">Freelance</p><div class="pills"><span class="pill">One-to-one tutoring</span></div></article>
-          <article class="entry"><p class="ctx">2020 – present</p><h3>Freelance Photographer</h3><p class="org">Events and weddings</p><div class="pills"><span class="pill">Events</span><span class="pill">Weddings</span><span class="pill">Film &amp; digital</span></div></article>
+          <article class="entry"><p class="ctx">Sep 2026 – present · Singapore</p><h3>Technical Intern</h3><p class="org">Digital Church Office (DCO) · myCatholicSG parish app</p><p class="stackline">React · Vite · Firebase · Node.js · Postman · Vitest · Playwright · GitHub Actions</p>
+            <ul class="facts">
+              <li><b>Release QA:</b> test developers’ pull requests locally before release; 10+ features covered, from room and SEEDs sacrament bookings to CATCH catechism timeslots.</li>
+              <li><b>SingPass:</b> tested an 84-file SingPass change end to end: consent scopes, the verified badge, NRIC masking, and child and sponsored-child records.</li>
+              <li><b>Test data &amp; APIs:</b> seed a private Firebase project with edge cases via Node.js scripts, and confirm fixes on the API in Postman.</li>
+              <li><b>Regression checks:</b> verified fixes for password-reset loops, login race conditions and security-audit upgrades, plus a new audit trail and its CSV export.</li>
+              <li><b>GovTech:</b> helped prepare SingPass and Myinfo approval submissions for 20 data fields.</li>
+              <li><b>FIAT: Catholic Hackathon 2026:</b> organised a weekend hackathon of 80 participants, 16 teams and 12 mentors.</li>
+            </ul>
+            <a class="readmore" href="journey/projects.html#dco">Read the full write-up →</a></article>
+          <article class="entry"><p class="ctx">Jun 2026 – present · Remote</p><h3>Essay Marker</h3><p class="org">Writers' Guild Learning Centre</p>
+            <ul class="facts"><li>Grade about <b>110 essays a month</b> against set criteria, with actionable feedback.</li></ul>
+            <div class="pills"><span class="pill">Essay marking</span><span class="pill">Student feedback</span></div></article>
+          <article class="entry"><p class="ctx">Jun – Jul 2025 · Bukit Batok</p><h3>Intern</h3><p class="org">Fraternitas, St Mary of the Angels</p>
+            <ul class="facts"><li>Grew sign-ups by <b>60%</b> via Instagram, Telegram and the <i>Chill Out with the Friars</i> posters.</li><li>Promoted the Franciscan mission trip to Indonesia and the Sequela Christi pilgrimage to Rome; facilitated weekly Lectio sessions.</li></ul>
+            <div class="pills"><span class="pill">Social media</span><span class="pill">Graphic design</span><span class="pill">Outreach</span></div></article>
+          <article class="entry"><p class="ctx">2024 – present</p><h3>Teacher &amp; Private Tutor</h3><p class="org">SGEducators Tuition Centre · freelance</p>
+            <ul class="facts"><li>Helped <b>3–4 students</b> rise from C/D to A/B grades, in class and one-to-one.</li></ul>
+            <div class="pills"><span class="pill">Tutoring</span><span class="pill">One-to-one</span></div></article>
+          <article class="entry"><p class="ctx">2020 – present</p><h3>Freelance Photographer</h3><p class="org">Film and digital</p>
+            <ul class="facts"><li>Shot <b>2 weddings</b> and <b>5–7 retreats and events</b>, including the Catholic Pitch mixer.</li></ul>
+            <div class="pills"><span class="pill">Events</span><span class="pill">Weddings</span><span class="pill">Film &amp; digital</span></div></article>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive">
+      <div class="wrap">
+        <h2 class="eyebrow">Leadership</h2>
+        <div class="archive-grid">
+          <article class="entry"><p class="ctx">SUTD residential college</p><h3>House Secretary</h3><p class="org">Mythos</p><div class="pills"><span class="pill">Events</span><span class="pill">Makers Market</span></div></article>
+          <article class="entry"><p class="ctx">SUTD student chapter</p><h3>Publicity Lead</h3><p class="org">IEEE</p><div class="pills"><span class="pill">Posters</span><span class="pill">Electronics Teardown</span><span class="pill">Industry visits</span></div></article>
+          <article class="entry"><p class="ctx">SUTD</p><h3>Tech Lead</h3><p class="org">IES</p></article>
+          <article class="entry"><p class="ctx">Oct 2026 · Singapore</p><h3>Organiser</h3><p class="org">FIAT: Catholic Hackathon 2026</p><div class="pills"><span class="pill">80 participants</span><span class="pill">16 teams</span><span class="pill">12 mentors</span></div></article>
         </div>
       </div>
     </div>
@@ -580,11 +613,11 @@
         <h2 class="eyebrow">Education &amp; skills</h2>
         <div class="archive-grid">
           <article class="entry"><p class="ctx">Aug 2025 – May 2029 · Bachelor of Engineering</p><h3>Singapore University of Technology and Design</h3><div class="pills"><span class="pill">Engineering Systems &amp; Design</span><span class="pill">Business Analytics &amp; Finance</span><span class="pill">Design and AI</span></div></article>
-          <article class="entry"><p class="ctx">Toolkit</p><h3>Engineering &amp; data</h3><div class="pills"><span class="pill">Rhino</span><span class="pill">Onshape</span><span class="pill">3D printing</span><span class="pill">Python</span><span class="pill">React</span><span class="pill">Firebase</span><span class="pill">Node.js</span><span class="pill">Postman</span><span class="pill">Git &amp; GitHub</span><span class="pill">Microsoft Excel</span></div></article>
+          <article class="entry"><p class="ctx">Toolkit</p><h3>Engineering &amp; code</h3><div class="pills"><span class="pill">Rhino</span><span class="pill">Grasshopper</span><span class="pill">Onshape</span><span class="pill">3D printing</span><span class="pill">React</span><span class="pill">Firebase</span><span class="pill">Node.js</span><span class="pill">Postman</span><span class="pill">Git &amp; GitHub</span><span class="pill">Python</span><span class="pill">HTML</span><span class="pill">Excel</span><span class="pill">Granta EduPack</span><span class="pill">Raspberry Pi</span></div></article>
           <article class="entry"><p class="ctx">2020 – 2021</p><h3>Catholic Junior College</h3><div class="pills"><span class="pill">A-Levels</span></div></article>
-          <article class="entry"><p class="ctx">Toolkit</p><h3>Design &amp; media</h3><div class="pills"><span class="pill">Adobe Photoshop</span><span class="pill">Adobe Illustrator</span><span class="pill">Canva</span><span class="pill">Microsoft Word</span></div></article>
+          <article class="entry"><p class="ctx">Toolkit</p><h3>Design &amp; media</h3><div class="pills"><span class="pill">Adobe Photoshop</span><span class="pill">Lightroom</span><span class="pill">Adobe Illustrator</span><span class="pill">Canva</span><span class="pill">Film photography</span></div></article>
           <article class="entry"><p class="ctx">2016 – 2019</p><h3>St. Patrick's School</h3><div class="pills"><span class="pill">O-Levels</span></div></article>
-          <article class="entry"><p class="ctx">Speaking</p><h3>Languages</h3><div class="pills"><span class="pill">English</span><span class="pill">Chinese</span><span class="pill">Hokkien</span></div></article>
+          <article class="entry"><p class="ctx">Speaking</p><h3>Languages</h3><div class="pills"><span class="pill">English</span><span class="pill">Mandarin</span><span class="pill">Hokkien</span></div></article>
           <article class="entry"><p class="ctx">2010 – 2015</p><h3>St. Joseph's Institution Junior</h3><div class="pills"><span class="pill">PSLE</span></div></article>
           <article class="entry"><p class="ctx">Outside work</p><h3>Hobbies</h3><div class="pills"><span class="pill">Reading</span><span class="pill">Travelling</span><span class="pill">Sports</span></div></article>
         </div>
@@ -622,7 +655,7 @@
           </div>
         </div>
       </form>
-      <p class="socials"><a href="https://www.linkedin.com/in/cassidy-thng-0378a923a" target="_blank" rel="noopener">linkedin</a><span class="dot">.</span><wbr><a href="https://www.instagram.com/cassidy.films/" target="_blank" rel="noopener">instagram</a><span class="dot">.</span><wbr><a href="https://cassthng.github.io/Cassidy-Portfolio/" target="_blank" rel="noopener">photography</a><span class="dot">.</span><wbr><a href="resume/Cassidy-Thng-Resume.pdf">résumé</a></p>
+      <p class="socials"><a href="https://www.linkedin.com/in/cassidy-thng-0378a923a" target="_blank" rel="noopener">linkedin</a><span class="dot">.</span><wbr><a href="https://www.instagram.com/cassidy.films/" target="_blank" rel="noopener">instagram</a><span class="dot">.</span><wbr><a href="https://github.com/cassthng" target="_blank" rel="noopener">github</a><span class="dot">.</span><wbr><a href="https://cassthng.github.io/Cassidy-Portfolio/" target="_blank" rel="noopener">photography</a><span class="dot">.</span><wbr><a href="resume/Cassidy-Thng-Resume.pdf">résumé</a></p>
       <div class="line"><a class="btn-pill" href="mailto:thngcassidy@gmail.com" id="email-text">thngcassidy@gmail.com</a><button class="copy" type="button" data-copy="thngcassidy@gmail.com" data-target="email-text" id="copy-email">copy</button></div>
       <footer><span>© 2026 Cassidy Thng</span><button type="button" class="to-top">Back to top ↑</button></footer>
     </div>
