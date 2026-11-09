@@ -90,6 +90,8 @@ figcaption{font-size:.75rem;color:var(--muted);line-height:1.4}
 .row.n1{max-width:min(100%,320px)}
 .row.l.n1{max-width:100%}
 .row.l.n1 img{aspect-ratio:auto}
+.row.shots{align-items:start}
+.row.shots img{aspect-ratio:auto}
 .back{font-size:.8125rem;font-weight:500;text-decoration:none;opacity:.7}
 .back:hover{opacity:1}
 .more{font-weight:700}
