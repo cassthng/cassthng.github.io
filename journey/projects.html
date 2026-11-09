@@ -322,10 +322,53 @@
     <footer><span>© 2026 Cassidy Thng</span><a href="../">Main site</a><a href="#top">Back to top ↑</a></footer>
   </div>
 </section>
+<dialog class="lb" id="lb" aria-label="Photo viewer">
+  <button class="lb-close" type="button" aria-label="Close photo viewer">×</button>
+  <button class="lb-prev" type="button" aria-label="Previous photo">‹</button>
+  <figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption><p class="lb-count" id="lb-count"></p></figure>
+  <button class="lb-next" type="button" aria-label="Next photo">›</button>
+</dialog>
 <script>
   const bar = document.getElementById('progress');
   const tick = () => { const h = document.documentElement; bar.style.transform = 'scaleX(' + (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)) + ')'; };
   addEventListener('scroll', tick, {passive: true}); tick();
+
+  // Photo viewer: opens a photo full size, then steps through the photos in the same project.
+  const lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img'),
+        lbCap = document.getElementById('lb-cap'), lbCount = document.getElementById('lb-count');
+  let group = [], at = 0, opener = null;
+  const show = i => {
+    at = (i + group.length) % group.length;
+    const img = group[at], cap = img.closest('figure').querySelector('figcaption');
+    lbImg.src = img.currentSrc || img.src; lbImg.alt = img.alt;
+    lbCap.innerHTML = cap ? cap.innerHTML : '';
+    lbCount.textContent = group.length > 1 ? (at + 1) + ' / ' + group.length : '';
+    [group[at + 1], group[at - 1]].forEach(n => { if (n) new Image().src = n.src; });
+  };
+  const open = img => {
+    group = [...img.closest('section').querySelectorAll('figure img')];
+    lb.classList.toggle('single', group.length < 2);
+    opener = img; show(group.indexOf(img));
+    lb.showModal(); document.body.classList.add('lb-open');
+  };
+  lb.addEventListener('close', () => { document.body.classList.remove('lb-open'); lbImg.removeAttribute('src'); if (opener) opener.focus(); });
+  document.querySelectorAll('.wu figure img').forEach(img => {
+    img.tabIndex = 0; img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', 'Enlarge photo: ' + img.alt);
+    img.addEventListener('click', () => open(img));
+    img.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img); } });
+  });
+  lb.querySelector('.lb-close').addEventListener('click', () => lb.close());
+  lb.querySelector('.lb-prev').addEventListener('click', () => show(at - 1));
+  lb.querySelector('.lb-next').addEventListener('click', () => show(at + 1));
+  lb.addEventListener('click', e => { if (e.target === lb || e.target === lbImg || e.target.tagName === 'FIGURE') lb.close(); });
+  lb.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') show(at - 1); if (e.key === 'ArrowRight') show(at + 1); });
+  let x0 = null;
+  lb.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, {passive: true});
+  lb.addEventListener('touchend', e => {
+    if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 50 && group.length > 1) show(at + (dx < 0 ? 1 : -1));
+  });
 </script>
 </body>
 </html>
