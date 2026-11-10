@@ -341,10 +341,15 @@
   const header = document.querySelector('.site-header');
   const setH = () => document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
   setH(); addEventListener('resize', setH);
-  addEventListener('load', () => {
+  const toHash = () => {
     const t = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
-    if (t && Math.abs(t.getBoundingClientRect().top - header.offsetHeight) > 16) t.scrollIntoView({behavior: 'instant'});
-  });
+    if (!t) return;
+    const html = document.documentElement, prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto'; t.scrollIntoView(); html.style.scrollBehavior = prev;
+  };
+  let moved = false;
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(e => addEventListener(e, () => { moved = true; }, {passive: true}));
+  addEventListener('load', () => { if (!location.hash) return; toHash(); [300, 1000].forEach(ms => setTimeout(() => { if (!moved) toHash(); }, ms)); });
 
   // Photo viewer: opens a photo full size, then steps through the photos in the same project.
   const lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img'),
