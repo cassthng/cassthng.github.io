@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800&family=Mrs+Saint+Delafield&display=swap">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <header class="site-header">
@@ -127,8 +127,9 @@
       <h3>Going back to the brief</h3>
       <p>When something breaks, the natural reaction is to reinforce it: thicker teeth, stronger infill, one more fix to the same idea. We could have spent weeks patching it. Instead, we went back to what the car actually had to do: deliver steady torque, grip steps from 1 cm to 4 cm, and keep a 200 g load stable all the way to the finish.</p>
       <h3>The rubber-band car</h3>
-      <p>Looked at that way, the answers were fairly obvious. A rubber band wound around the axle gave smooth, steady torque without the sudden peak that broke our gears. Big wheels with rubber-band treads gave grip, and a low, wide basket kept the load centred. Just before the run, we removed one more part, a zip-tie release that kept snagging the band. The final car looked much less impressive than the gear train, but on challenge day it climbed every step and delivered its load.</p>
-      <div class="row p n1" style="--n:1"><figure><img src="media/1d-poster.jpg" alt="Project poster: from gear train to rubber band" loading="lazy" width="989" height="1400"><figcaption>Project poster: from gear train to rubber band</figcaption></figure></div>
+      <p>Looked at that way, the answers were fairly obvious. A rubber band wound around the axle gave smooth, steady torque without the sudden peak that broke our gears. Big wheels with rubber-band treads gave grip, and a low, wide basket kept the load centred. Just before the run, we removed one more part, a zip-tie release that kept snagging the band. The final car looked much less impressive than the gear train, but on challenge day it climbed every step and delivered its load. We were one of the top teams in our class to get through the whole obstacle course.</p>
+      <p>Our team also made a short video that walks through the car and how it’s released onto the course.</p>
+      <div class="row p n2" style="--n:2"><figure class="map vid"><div class="map-box vid-box" data-yt="Eg0LhWCxEL0"><img src="img/1d-video.jpg" alt="Still from our 1D Challenge video: the car on the test track" loading="lazy" width="540" height="720"><button type="button" class="map-go">▶ Play video</button></div><figcaption>Our 1D Challenge video. <a href="https://youtu.be/Eg0LhWCxEL0" target="_blank" rel="noopener">Watch on YouTube ↗</a></figcaption></figure><figure><img src="media/1d-poster.jpg" alt="Project poster: from gear train to rubber band" loading="lazy" width="989" height="1400"><figcaption>Project poster: from gear train to rubber band</figcaption></figure></div>
       <div class="reflect"><h3>Overall Reflection</h3>
       <p>Removing complexity instead of adding it is probably the biggest engineering lesson of my first year. It goes against the urge to make work look sophisticated. The best solution usually isn’t the one with the most parts; it’s the one with the fewest ways to fail.</p>
       <p>It also taught our team of five how to disagree well. Instead of arguing over ideas, we built them, tested them and let the results decide, so everyone could get behind the final call.</p>
@@ -449,10 +450,16 @@
     if (Math.abs(dx) > 50 && group.length > 1) show(at + (dx < 0 ? 1 : -1));
   });
   // FIAT 3D map: only load the live map when someone asks for it, so scrolling past it doesn't zoom the map.
+  // The 1D video works the same way: the YouTube player only loads after a click.
   document.querySelectorAll('.map-box').forEach(box => box.querySelector('.map-go').addEventListener('click', () => {
     const f = document.createElement('iframe');
-    f.src = box.dataset.src; f.title = 'Interactive 3D map of St Joseph’s Church (Bukit Timah)';
-    f.allow = 'fullscreen'; box.appendChild(f); box.classList.add('live'); f.focus();
+    if (box.dataset.yt) {
+      f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.yt + '?autoplay=1&rel=0&playsinline=1';
+      f.title = 'Physical World 1D Challenge video'; f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    } else {
+      f.src = box.dataset.src; f.title = 'Interactive 3D map of St Joseph’s Church (Bukit Timah)'; f.allow = 'fullscreen';
+    }
+    f.allowFullscreen = true; box.appendChild(f); box.classList.add('live'); f.focus();
   }));
 </script>
 </body>

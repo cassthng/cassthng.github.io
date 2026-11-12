@@ -165,3 +165,7 @@ body.lb-open{overflow:hidden}
 .map-go:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .map-box.live img,.map-box.live .map-go{display:none}
 @media (max-width:700px){.map-box{aspect-ratio:4/5}.map-box img{object-position:62% 50%}}
+.vid{margin:0}
+.map-box.vid-box{aspect-ratio:3/4;background:#111319}
+.row.p .map-box.vid-box img{aspect-ratio:auto}
+@media (max-width:700px){.map-box.vid-box{aspect-ratio:3/4}.map-box.vid-box img{object-position:50% 50%}}
