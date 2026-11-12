@@ -169,3 +169,5 @@ body.lb-open{overflow:hidden}
 .map-box.vid-box{aspect-ratio:3/4;background:#111319}
 .row.p .map-box.vid-box img{aspect-ratio:auto}
 @media (max-width:700px){.map-box.vid-box{aspect-ratio:3/4}.map-box.vid-box img{object-position:50% 50%}}
+.back-sep{margin:0 .6em;opacity:.4;font-size:.8125rem}
+@media (max-width:700px){.row.l.n3{--n:2 !important}.row.l.n3 figure:nth-child(3){grid-column:1/-1}}
