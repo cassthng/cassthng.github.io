@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800&family=Mrs+Saint+Delafield&display=swap">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <header class="site-header">
@@ -258,6 +258,7 @@
       <p>At the Digital Church Office, I organised FIAT, a Catholic hackathon in Singapore built on three words: connect, empower, grow. The name comes from Mary’s answer in Luke 1:38, “let it be done”, and our reel opens with it written as code: <code>let itBe = done;</code>. It was a weekend of tech and prayer. The first night ended in adoration, and Saturday, 10 October began with worship. Then 80 participants in 16 teams, with 12 mentors, worked on real problems brought by four church organisations, including the Catholic Foundation. They listened, built and pitched, and a lot of people who arrived as strangers left as friends.</p>
       <p>The agenda, the four briefs and the judges are on the hackathon website: <a href="https://fiat.mycatholic.sg/" target="_blank" rel="noopener">fiat.mycatholic.sg ↗</a></p>
       <div class="row l n2" style="--n:2"><figure><img src="img/fiat-site-home.jpg" alt="The FIAT website home page" loading="lazy" width="1920" height="1200"><figcaption>The FIAT website home page</figcaption></figure><figure><img src="img/fiat-site-briefs.jpg" alt="The four problem statements on the FIAT website" loading="lazy" width="1920" height="1000"><figcaption>The four problem statements on the FIAT website</figcaption></figure></div>
+      <figure class="map"><div class="map-box" data-src="https://fiat.mycatholic.sg/campus-map/"><img src="img/fiat-map.jpg" alt="3D map of St Joseph’s Church (Bukit Timah) from the FIAT website" loading="lazy" width="1600" height="1000"><button type="button" class="map-go">Explore the 3D map</button></div><figcaption>The 3D map of St Joseph’s Church from the FIAT website. Drag to spin, scroll to zoom. <a href="https://fiat.mycatholic.sg/campus-map/" target="_blank" rel="noopener">Open full screen ↗</a></figcaption></figure>
       <p>FIAT showed me what tech can look like when it’s built to serve a community: real problems, real people, and prayer at the centre.</p>
       <div class="reflect"><h3>Overall Reflection</h3>
       <p>This work showed me that consistency matters as much as creativity, and that a small team with a clear voice can reach far more people than you’d expect.</p>
@@ -424,13 +425,13 @@
     [group[at + 1], group[at - 1]].forEach(n => { if (n) new Image().src = n.src; });
   };
   const open = img => {
-    group = [...img.closest('section').querySelectorAll('figure img')];
+    group = [...img.closest('section').querySelectorAll('figure:not(.map) img')];
     lb.classList.toggle('single', group.length < 2);
     opener = img; show(group.indexOf(img));
     lb.showModal(); document.body.classList.add('lb-open');
   };
   lb.addEventListener('close', () => { document.body.classList.remove('lb-open'); lbImg.removeAttribute('src'); if (opener) opener.focus(); });
-  document.querySelectorAll('.wu figure img').forEach(img => {
+  document.querySelectorAll('.wu figure:not(.map) img').forEach(img => {
     img.tabIndex = 0; img.setAttribute('role', 'button');
     img.setAttribute('aria-label', 'Enlarge photo: ' + img.alt);
     img.addEventListener('click', () => open(img));
@@ -447,6 +448,12 @@
     if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null;
     if (Math.abs(dx) > 50 && group.length > 1) show(at + (dx < 0 ? 1 : -1));
   });
+  // FIAT 3D map: only load the live map when someone asks for it, so scrolling past it doesn't zoom the map.
+  document.querySelectorAll('.map-box').forEach(box => box.querySelector('.map-go').addEventListener('click', () => {
+    const f = document.createElement('iframe');
+    f.src = box.dataset.src; f.title = 'Interactive 3D map of St Joseph’s Church (Bukit Timah)';
+    f.allow = 'fullscreen'; box.appendChild(f); box.classList.add('live'); f.focus();
+  }));
 </script>
 </body>
 </html>
